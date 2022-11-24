@@ -1,5 +1,7 @@
 // Code snippet for albm art component to be filtered and modified for later
 
+// Disclaimer - I was using preexisting 00-practice-app, so please disregard CarComponent and so forth
+
 import React, { useEffect } from 'react';
 import CarComponent from './components/CarComponent';
 // Importing our theme provider which will make our global state available to child components
@@ -23,10 +25,6 @@ export default function App() {
     {
       name: "Ice Cube",
       albumArt: "Snapback hat"
-    },
-    {
-      name: "Ye",
-      albumArt: "idiot sandwich"
     },
   ]
 
