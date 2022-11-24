@@ -29,7 +29,7 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'record'
         }],
-        validate: [arrayLimit, `${PATH} exceeds the limit of 4`]
+        validate: [arrayLimit, `PATH exceeds the limit of 4`]
     },
 
     reactions: [reactionSchema],
