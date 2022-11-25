@@ -1,0 +1,18 @@
+/* Before modifying final react output, this test html is to figure out what to return using react later on */
+
+header, .medley {
+  position: relative;
+  text-align: center;
+}
+
+#banner, #background {
+  max-width: 100%;
+}
+
+.nav {
+    position: absolute;
+    top: 50%;
+    right:20px;
+    font-size: 30px;
+    font-weight:bolder;
+  }
