@@ -64,7 +64,7 @@ const resolvers = {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id},
                     { $addToSet: { topFour: input } },
-                    {new: true, runValidators: true}
+                    {new: true, runValidators: false}
                 );
                 return updatedUser;
             }
@@ -122,6 +122,7 @@ const resolvers = {
                         {$pull: {reacted: reactionId} },
                         {new: true},
                     );
+                    return removeReaction && removeReacted;
             }
             throw new AuthenticationError('You need to be logged in!');
         }
