@@ -98,20 +98,33 @@ const resolvers = {
                     {$addToSet: { reactions: reaction._id}}
                 );
                 
-                const reacted = await Reaction.create({
-                    username:  username ,
-                });
+              
                 await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$addToSet: { reacted: reacted._id } },
+                    {$addToSet: { reacted: reaction._id } },
                 );
                     if(error)console.log(error);
-                return reaction && reacted;
+                return reaction;
 
             }
             throw new AuthenticationError('You need to be logged in!');
         },
 
+        removeReaction: async (parent, { reactionId, userId }, context, error) => {
+            if(context.user) {
+                const removeReaction = await User.findOneAndUpdate(
+                    {_id: userId},
+                    {$pull: {reactions: reactionId}},
+                    {new: true},
+                );
+                    const removeReacted = await User.findOneAndUpdate(
+                        {_id: context.user._id},
+                        {$pull: {reacted: reactionId} },
+                        {new: true},
+                    );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        }
         
     },
 

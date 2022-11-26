@@ -55,6 +55,7 @@ type Mutation {
     saveTop(input: SaveRecordInput): User
     removeRecord(_id: ID): User
     addReaction(userId: ID!, username: String!): Reaction
+    removeReaction(reactionId: ID!, userId: ID!): Reaction
 }
 `;
 
