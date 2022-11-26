@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Reaction } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -85,7 +85,36 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+
+
+        addReaction: async (parent, { userId, username }, context, error ) => {
+            if (context.user) {
+                const reaction = await Reaction.create({
+                    username: context.user.username,
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: userId },
+                    {$addToSet: { reactions: reaction._id}}
+                );
+                
+                const reacted = await Reaction.create({
+                    username:  username ,
+                });
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$addToSet: { reacted: reacted._id } },
+                );
+                    if(error)console.log(error);
+                return reaction && reacted;
+
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+
+        
     },
+
 };
 
 module.exports = resolvers;

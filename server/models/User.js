@@ -24,17 +24,21 @@ const userSchema = new Schema({
 
     medley: [recordSchema],
 
-    topFour: {
-        type: [{
+    topFour: [recordSchema],
+
+    reactions: [
+        {
             type: Schema.Types.ObjectId,
-            ref: 'record'
-        }],
-        validate: [arrayLimit, `PATH exceeds the limit of 4`]
-    },
+            ref: 'Reaction'
+        },
+    ],
 
-    reactions: [reactionSchema],
-
-    reacted: [reactionSchema],
+    reacted: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Reaction'
+        },
+    ],
 
 
 },
@@ -46,10 +50,6 @@ const userSchema = new Schema({
 
 );
 
-// validator
-function arrayLimit(val){
-    return val.length <= 4;
-}
 
 
 

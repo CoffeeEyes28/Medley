@@ -28,7 +28,8 @@ type Record {
 }
 
 type Reaction {
-    reactionId: ID
+    _id: ID
+    username: String
 }
 
 type Auth {
@@ -42,12 +43,18 @@ input SaveRecordInput {
     image: String
 }
 
+
+
+
+
+
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     saveRecord(input: SaveRecordInput): User
     saveTop(input: SaveRecordInput): User
     removeRecord(_id: ID): User
+    addReaction(userId: ID!, username: String!): Reaction
 }
 `;
 
