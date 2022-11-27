@@ -119,18 +119,19 @@ mutation removeRecord($_id: ID) {
 `;
 export const ADD_REACTION = gql`
 mutation addReaction($userId: ID!, $username: String!) {
-    addReaction(userId: $ID, username: $username) {
+    addReaction(userId: $userId, username: $username) {
         _id
-        username
+        reactionId
   }
 }
 `;
 
 export const REMOVE_REACTION = gql`
 mutation removeReaction($reactionId: ID!, $userId: ID!) {
-    removeReaction(reactionId: $ID, userId: $ID) {
-        reactionId
-        _id
+    removeReaction(reactionId: $reactionId, userId: $userId) {
+      _id
+      reactionId
+        
   }
 }
 `;
