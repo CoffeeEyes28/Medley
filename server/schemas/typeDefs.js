@@ -29,6 +29,7 @@ type Record {
 
 type Reaction {
     _id: ID
+    reactionId: String
     username: String
 }
 
