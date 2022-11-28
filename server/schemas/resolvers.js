@@ -139,6 +139,7 @@ const resolvers = {
                     return removeReaction && removeReacted;
             }
             throw new AuthenticationError('You need to be logged in!');
+            
         }
         
     },
