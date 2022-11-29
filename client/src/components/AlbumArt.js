@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Code snippet for global Album Art Component
 
 export default function Delete(props){
@@ -13,3 +14,6 @@ export default function Delete(props){
         </div>
     )
     }
+=======
+// placeholder
+>>>>>>> main
