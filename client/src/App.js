@@ -60,7 +60,7 @@ function App() {
                 element={<Profile />}
               />
               <Route
-                path="/profiles/:userId"
+                path="/profiles/:username"
                 element={<Profile />}
               />
             </Routes>

@@ -32,8 +32,8 @@ query me {
 `;
 
 export const GET_USER = gql`
-query user($userId: ID!) {
-  user(userId: $userId) {
+query user($username: String!) {
+  user(username: $username) {
     _id
       username
       email

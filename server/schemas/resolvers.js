@@ -9,8 +9,8 @@ const resolvers = {
             return User.find();
         },
 
-        user: async (parent, { userId }) => {
-            return User.findOne({ _id: userId });
+        user: async (parent, { username }) => {
+            return User.findOne({ username: username });
         },
 
         me: async (parent, args, context) => {
