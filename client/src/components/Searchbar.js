@@ -1,5 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useQuery, useMutation } from '@apollo/client';
+import { SAVE_RECORD } from '../utils/mutations';
+import { GET_ME } from '../utils/queries';
+
 
 import Results from "./Results";
 
@@ -10,12 +14,22 @@ import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
 
 import search from "../utils/API";
+import Auth from '../utils/auth';
 
 const Searchbar = () => {
   const color = grey[300];
 
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
+
+const [saveRecord] = useMutation(SAVE_RECORD);
+
+const { data } = useQuery(GET_ME); 
+const userData = data?.me || [];
+
+console.log(userData)
+
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +50,7 @@ const Searchbar = () => {
       const artistData = data.topalbums.album.map((artist) => ({
         artist: artist.artist.name,
         album_name: artist.name,
-        image: artist.image[3],
+        image: artist.image[3]["#text"],
       }));
 
       
@@ -46,6 +60,8 @@ const Searchbar = () => {
       console.error(err);
     }
   };
+
+
 
   return (
     <Box
@@ -79,7 +95,7 @@ const Searchbar = () => {
         </Button>
       </Box>
 
-      <Results props={results} />
+      <Results props={results}  />
     </Box>
   );
 };
