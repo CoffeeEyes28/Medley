@@ -1,5 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useMutation } from '@apollo/client';
+import { SAVE_RECORD } from '../utils/mutations';
+
+
 
 import Results from "./Results";
 
@@ -10,12 +14,19 @@ import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
 
 import search from "../utils/API";
+import Auth from '../utils/auth';
 
 const Searchbar = () => {
   const color = grey[300];
 
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
+
+const [saveRecord] = useMutation(SAVE_RECORD);
+
+
+
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -45,6 +56,26 @@ const Searchbar = () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const addToMedley = async (album_name) => {
+    const recordToSave = results.find((record) => record.album_name === album_name);
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if(!token) {
+      return false;
+    }
+
+    try {
+      await saveRecord({
+        variables: { input: recordToSave },
+      })
+    } catch (err) {
+      console.error(err)
+    }
+
+
   };
 
   return (
@@ -79,7 +110,7 @@ const Searchbar = () => {
         </Button>
       </Box>
 
-      <Results props={results} />
+      <Results props={results}  />
     </Box>
   );
 };
