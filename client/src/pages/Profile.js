@@ -3,14 +3,14 @@
 // import { useQuery } from '@apollo/client';
 
 
-// import { QUERY_USER, QUERY_ME } from '../utils/queries';
+// import { GET_ME, GET_USER } from '../utils/queries';
 
 // import Auth from '../utils/auth';
 
 // const Profile = () => {
 //   const { username: userParam } = useParams();
 
-//   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+//   const { loading, data } = useQuery(userParam ? GET_USER : GET_ME, {
 //     variables: { username: userParam },
 //   });
 
@@ -34,53 +34,6 @@
 //   }
 //   return (
 //     <div>
-//       <div className="flex-row justify-center mb-3">
-//         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-//           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-//         </h2>
-
-// import { GET_ME, GET_USER } from '../utils/queries';
-
-// import Auth from '../utils/auth';
-// // import { removeBookId } from '../utils/localStorage';
-
-// const SavedBooks = () => {
-//   const { loading, data } = useQuery(GET_ME);
-//   const [removeRecord, {error} ] = useMutation(REMOVE_RECORD);
-//   const userData = data?.me || [];
-
-//   const { loading, data } = useQuery(userParam ? GET_USER : GET_ME, {
-//     variables: { username: userParam },
-//   });
-
-//   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-//   const handleDeleteBook = async (bookId) => {
-//     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-//     if (!token) {
-//       return false;
-//     }
-// console.log(bookId)
-//     try {
-//       let data = await removeRecord({
-//         variables:{ bookId: bookId},
-//       });
-// console.log(data)
-//       // setUserData(updatedUser);
-//       // upon success, remove book's id from localStorage
-//       // removeBookId(bookId);
-//     } catch (err) {
-//       console.error(error);
-//     }
-//   };
-
-//   // if data isn't here yet, say so
-//   if (loading) {
-//     return <h2>LOADING...</h2>;
-//   }
-
-//   return (
-//     <div>
      
 //     </div>
 //   );
@@ -91,25 +44,25 @@
 
 
 
-/* <div className="flex-row justify-center mb-3">
-<h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-  Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-</h2>
+// /* <div className="flex-row justify-center mb-3">
+// <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+//   Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+// </h2>
 
-<div className="col-12 col-md-10 mb-5">
-  <ThoughtList
-    thoughts={user.thoughts}
-    title={`${user.username}'s thoughts...`}
-    showTitle={false}
-    showUsername={false}
-  />
-</div>
-{!userParam && (
-  <div
-    className="col-12 col-md-10 mb-3 p-3"
-    style={{ border: '1px dotted #1a1a1a' }}
-  >
-    <ThoughtForm />
-  </div>
-)}
-</div> */
+// <div className="col-12 col-md-10 mb-5">
+//   <ThoughtList
+//     thoughts={user.thoughts}
+//     title={`${user.username}'s thoughts...`}
+//     showTitle={false}
+//     showUsername={false}
+//   />
+// </div>
+// {!userParam && (
+//   <div
+//     className="col-12 col-md-10 mb-3 p-3"
+//     style={{ border: '1px dotted #1a1a1a' }}
+//   >
+//     <ThoughtForm />
+//   </div>
+// )}
+// </div> */

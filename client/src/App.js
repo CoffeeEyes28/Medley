@@ -18,7 +18,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Container from '@mui/material/Container';
-
+import NavBar from './components/NavBar';
 
 
 // Construct our main GraphQL API endpoint
@@ -51,6 +51,7 @@ function App() {
     <ApolloProvider client={client}>
       <Header />
       <Router>
+        <NavBar/> 
         <div>
           <div>
             <Routes>
