@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import { SAVE_RECORD } from '../utils/mutations';
-import { GET_ME } from '../utils/queries';
+
 
 
 import Results from "./Results";
@@ -22,12 +22,11 @@ const Searchbar = () => {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
 
-const [saveRecord] = useMutation(SAVE_RECORD);
 
-const { data } = useQuery(GET_ME); 
-const userData = data?.me || [];
 
-console.log(userData)
+
+
+
 
 
 
@@ -86,6 +85,7 @@ console.log(userData)
         />
         <br></br>
         <Button
+          
           onClick={handleFormSubmit}
           size="small"
           variant="contained"
