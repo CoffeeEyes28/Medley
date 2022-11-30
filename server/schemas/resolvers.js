@@ -61,12 +61,26 @@ const resolvers = {
 
         saveTop: async (parent, { input }, context) => {
             if(context.user){
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id},
-                    { $addToSet: { topFour: input } },
-                    {new: true, runValidators: false}
-                );
-                return updatedUser;
+                const userArray = await User.findOne({ _id: context.user._id})
+                const topFourLength = userArray.topFour.length
+                if (topFourLength < 4) {
+                    const updatedUser = await User.findOneAndUpdate(
+                        { _id: context.user._id},
+                        { $addToSet: { topFour: input } },
+                        {new: true, runValidators: false}
+                    );
+                    return updatedUser;
+                } else {
+                    return "Top Four already exists";
+                } 
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+
+        updateTop: async (parent, { input, topFourId }, context) => {
+            if(context.user) {
+                const updatedTopFour = await User.findOneAndUpdate( { _id: context.user._id, "topFour._id": topFourId}, {...input})
+                return updatedTopFour;
             }
             throw new AuthenticationError('You need to be logged in!');
         },
