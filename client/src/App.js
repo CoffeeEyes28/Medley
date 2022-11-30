@@ -12,11 +12,13 @@ import './App.css';
 
 
 
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Container from '@mui/material/Container';
+
 
 
 // Construct our main GraphQL API endpoint
@@ -44,6 +46,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <Header />
@@ -60,7 +63,7 @@ function App() {
                 element={<Profile />}
               />
               <Route
-                path="/profiles/:userId"
+                path="/profiles/:username"
                 element={<Profile />}
               />
             </Routes>
