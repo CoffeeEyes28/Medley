@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { SAVE_RECORD } from '../utils/mutations';
-
+import { GET_ME } from '../utils/queries';
 
 
 import Results from "./Results";
@@ -24,7 +24,10 @@ const Searchbar = () => {
 
 const [saveRecord] = useMutation(SAVE_RECORD);
 
+const { data } = useQuery(GET_ME); 
+const userData = data?.me || [];
 
+console.log(userData)
 
 
 
@@ -58,25 +61,7 @@ const [saveRecord] = useMutation(SAVE_RECORD);
     }
   };
 
-  const addToMedley = async (album_name) => {
-    const recordToSave = results.find((record) => record.album_name === album_name);
 
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if(!token) {
-      return false;
-    }
-
-    try {
-      await saveRecord({
-        variables: { input: recordToSave },
-      })
-    } catch (err) {
-      console.error(err)
-    }
-
-
-  };
 
   return (
     <Box

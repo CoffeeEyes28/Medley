@@ -1,10 +1,11 @@
 import React from 'react';
-import { useMutation } from '@apollo/client';
+import { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { SAVE_RECORD } from '../utils/mutations';
 
 import Icon from '@mui/material/Icon'
 import Button from '@mui/material/Button';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import Auth from '../utils/auth';
 
@@ -13,16 +14,22 @@ import Auth from '../utils/auth';
 
 const Results = (props) => {
 
+const [albumName, setAlbumName] = useState('');
+
+
+
+
 
 const [saveRecord] = useMutation(SAVE_RECORD);
 
 
 
 
-const data = props.props
+
+const recordData = props.props
 
 const addToMedley = async (album_name) => {
-    const recordToSave = data.find((record) => record.album_name === album_name);
+    const recordToSave = recordData.find((record) => record.album_name === album_name);
     console.log(recordToSave)
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -43,7 +50,7 @@ const addToMedley = async (album_name) => {
 
     return (
         <div>
-        {data.map((artist) => (
+        {recordData.map((artist) => (
 
             <div key={artist.album_name}>
                 <h1>{artist.artist}</h1>
@@ -51,7 +58,13 @@ const addToMedley = async (album_name) => {
                 <img src={artist.image} alt={artist.album_name}/>
                 <br></br>
                 {Auth.loggedIn() && (
-                     <Button onClick={() => addToMedley(artist.album_name)}><Icon>add_circle</Icon></Button>
+                     <Button 
+                    //  disable={userData?.some((record) => record.album_name === artist.album_name)}
+                     onClick={() => addToMedley(artist.album_name)}>
+                    <Icon>
+                    add_circle
+                        </Icon>
+                        </Button>
                 )}
                
             </div>
