@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Reaction } = require('../models');
 const { signToken } = require('../utils/auth');
+const mongoose = require('mongoose');
 
 const resolvers = {
     Query: {
@@ -78,6 +79,7 @@ const resolvers = {
         },
 
         updateTop: async (parent, { input, topFourId }, context) => {
+          
             if(context.user) {
                 const updatedTopFour = await User.updateOne( { _id: context.user._id, "topFour._id": topFourId}, 
               
@@ -152,6 +154,7 @@ const resolvers = {
                     return removeReaction && removeReacted;
             }
             throw new AuthenticationError('You need to be logged in!');
+            
         }
         
     },
