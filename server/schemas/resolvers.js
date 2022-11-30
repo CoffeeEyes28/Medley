@@ -79,7 +79,20 @@ const resolvers = {
 
         updateTop: async (parent, { input, topFourId }, context) => {
             if(context.user) {
-                const updatedTopFour = await User.findOneAndUpdate( { _id: context.user._id, "topFour._id": topFourId}, {...input})
+                const updatedTopFour = await User.updateOne( { _id: context.user._id, "topFour._id": topFourId}, 
+              
+                {
+                    $set: {
+                        "topFour.$.artist": input.artist,
+                        "topFour.$.album_name": input.album_name,
+                        "topFour.$.image": input.image,
+                    }
+                },
+
+                { arrayFilters: [ {_id: topFourId }], upsert: true},
+                
+                )
+               
                 return updatedTopFour;
             }
             throw new AuthenticationError('You need to be logged in!');

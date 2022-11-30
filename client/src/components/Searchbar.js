@@ -39,7 +39,7 @@ const Searchbar = () => {
         image: artist.image[3],
       }));
 
-      console.log(artistData);
+      
       setResults(artistData);
       setSearchInput("");
     } catch (err) {
