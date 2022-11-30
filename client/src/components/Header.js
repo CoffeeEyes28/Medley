@@ -1,6 +1,7 @@
 import { Divider } from '@mui/material';
 import React from 'react'
 import banner from "../Assets/Images/banner.jpg";
+import NavBar from './NavBar';
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
       height: '25vh',
       backgroundColor: 'white',
     }}>
-      <h2>navBar Here</h2>
+      <NavBar/>
     </header>
   )
 }
