@@ -39,54 +39,54 @@
 //           Viewing {userParam ? `${user.username}'s` : 'your'} profile.
 //         </h2>
 
-import { GET_ME, GET_USER } from '../utils/queries';
+// import { GET_ME, GET_USER } from '../utils/queries';
 
-import Auth from '../utils/auth';
-// import { removeBookId } from '../utils/localStorage';
+// import Auth from '../utils/auth';
+// // import { removeBookId } from '../utils/localStorage';
 
-const SavedBooks = () => {
-  const { loading, data } = useQuery(GET_ME);
-  const [removeRecord, {error} ] = useMutation(REMOVE_RECORD);
-  const userData = data?.me || [];
+// const SavedBooks = () => {
+//   const { loading, data } = useQuery(GET_ME);
+//   const [removeRecord, {error} ] = useMutation(REMOVE_RECORD);
+//   const userData = data?.me || [];
 
-  const { loading, data } = useQuery(userParam ? GET_USER : GET_ME, {
-    variables: { username: userParam },
-  });
+//   const { loading, data } = useQuery(userParam ? GET_USER : GET_ME, {
+//     variables: { username: userParam },
+//   });
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+//   // create function that accepts the book's mongo _id value as param and deletes the book from the database
+//   const handleDeleteBook = async (bookId) => {
+//     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
-console.log(bookId)
-    try {
-      let data = await removeRecord({
-        variables:{ bookId: bookId},
-      });
-console.log(data)
-      // setUserData(updatedUser);
-      // upon success, remove book's id from localStorage
-      // removeBookId(bookId);
-    } catch (err) {
-      console.error(error);
-    }
-  };
+//     if (!token) {
+//       return false;
+//     }
+// console.log(bookId)
+//     try {
+//       let data = await removeRecord({
+//         variables:{ bookId: bookId},
+//       });
+// console.log(data)
+//       // setUserData(updatedUser);
+//       // upon success, remove book's id from localStorage
+//       // removeBookId(bookId);
+//     } catch (err) {
+//       console.error(error);
+//     }
+//   };
 
-  // if data isn't here yet, say so
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
+//   // if data isn't here yet, say so
+//   if (loading) {
+//     return <h2>LOADING...</h2>;
+//   }
 
-  return (
-    <div>
+//   return (
+//     <div>
      
-    </div>
-  );
-};
+//     </div>
+//   );
+// };
 
-export default Profile;
+// export default Profile;
 
 
 
