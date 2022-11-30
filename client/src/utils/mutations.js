@@ -26,7 +26,7 @@ export const ADD_USER = gql`
 
 
 export const SAVE_RECORD = gql`
-  mutation saveRecord($input: SavedRecordInput!) {
+  mutation saveRecord($input: SaveRecordInput!) {
     saveRecord(input: $input) {
         _id
         username
@@ -44,10 +44,10 @@ export const SAVE_RECORD = gql`
           image
         }
         reactions{
-          reactionID
+          reactionId
         }
         reacted{
-          reactionID
+          reactionId
         }
         medleyTotal
         reactionCount
