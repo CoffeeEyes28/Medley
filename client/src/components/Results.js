@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { SAVE_RECORD } from '../utils/mutations';
-
+import { GET_ME } from '../utils/queries';
 import Icon from '@mui/material/Icon'
 import Button from '@mui/material/Button';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -14,7 +14,18 @@ import Auth from '../utils/auth';
 
 const Results = (props) => {
 
+
 const [albumName, setAlbumName] = useState('');
+
+
+const { loading, data } = useQuery(GET_ME); 
+const userData = data?.me || [];
+
+
+
+
+
+     
 
 
 
@@ -48,6 +59,9 @@ const addToMedley = async (album_name) => {
 
   };
 
+ 
+
+
     return (
         <div>
         {recordData.map((artist) => (
@@ -58,12 +72,12 @@ const addToMedley = async (album_name) => {
                 <img src={artist.image} alt={artist.album_name}/>
                 <br></br>
                 {Auth.loggedIn() && (
+                    
                      <Button 
-                    //  disable={userData?.some((record) => record.album_name === artist.album_name)}
+                     disabled={userData.medley.some(record => artist.album_name === record.album_name)}
                      onClick={() => addToMedley(artist.album_name)}>
                     <Icon>
-                    add_circle
-                        </Icon>
+                        {userData.medley.some(record => artist.album_name === record.album_name) ? <CheckCircleIcon/> : 'add_circle'}</Icon>
                         </Button>
                 )}
                
