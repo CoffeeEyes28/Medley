@@ -24,7 +24,7 @@ const data = props.props
             <div>
                 <h1>{artist.artist}</h1>
                 <h2>{artist.album_name}</h2>
-                <img src={artist.image["#text"]} alt={artist.album_name}/>
+                <img src={artist.image} alt={artist.album_name}/>
                 <br></br>
                 <Button><Icon>add_circle</Icon></Button>
             </div>

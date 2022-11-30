@@ -36,7 +36,7 @@ const Searchbar = () => {
       const artistData = data.topalbums.album.map((artist) => ({
         artist: artist.artist.name,
         album_name: artist.name,
-        image: artist.image[3],
+        image: artist.image[3]["#text"],
       }));
 
       
