@@ -1,8 +1,13 @@
+h2 {
+text-align: end;
+padding-right: 20px;
+}
+
 body {
   background-image: url(./Assets/Images/background.jpg);
   background-size: 100%;
+  background-position-y: 200px;
   background-repeat: repeat;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
