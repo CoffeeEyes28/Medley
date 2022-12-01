@@ -26,7 +26,7 @@ export const ADD_USER = gql`
 
 
 export const SAVE_RECORD = gql`
-  mutation saveRecord($input: SavedRecordInput!) {
+  mutation saveRecord($input: SaveRecordInput!) {
     saveRecord(input: $input) {
         _id
         username
@@ -44,10 +44,10 @@ export const SAVE_RECORD = gql`
           image
         }
         reactions{
-          reactionID
+          reactionId
         }
         reacted{
-          reactionID
+          reactionId
         }
         medleyTotal
         reactionCount
@@ -57,8 +57,8 @@ export const SAVE_RECORD = gql`
 `;
 
 export const SAVE_TOP = gql`
-  mutation saveTop($input: SavedRecordInput!) {
-    saveRecord(input: $input){
+  mutation saveTop($input: SaveRecordInput!) {
+    saveTop(input: $input){
         _id
         username
         email
@@ -75,10 +75,10 @@ export const SAVE_TOP = gql`
           image
         }
         reactions{
-          reactionID
+          reactionId
         }
         reacted{
-          reactionID
+          reactionId
         }
         medleyTotal
         reactionCount
@@ -106,10 +106,10 @@ mutation removeRecord($_id: ID) {
           image
         }
         reactions{
-          reactionID
+          reactionId
         }
         reacted{
-          reactionID
+          reactionId
         }
         medleyTotal
         reactionCount
@@ -132,6 +132,15 @@ mutation removeReaction($reactionId: ID!, $userId: ID!) {
       _id
       reactionId
         
+  }
+}
+`;
+
+export const UPDATE_TOP = gql`
+mutation updateTop($input: SaveRecordInput!, $topFourId: String!) {
+    updateTop(input: $input, topFourId: $topFourId) {
+      _id
+      topFourId 
   }
 }
 `;

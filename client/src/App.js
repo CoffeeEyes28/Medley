@@ -12,16 +12,18 @@ import './App.css';
 
 
 
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Container from '@mui/material/Container';
+import NavBar from './components/NavBar';
 
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
@@ -44,10 +46,12 @@ const client = new ApolloClient({
 });
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <Header />
       <Router>
+        <NavBar/> 
         <div>
           <div>
             <Routes>
@@ -60,7 +64,7 @@ function App() {
                 element={<Profile />}
               />
               <Route
-                path="/profiles/:userId"
+                path="/profiles/:username"
                 element={<Profile />}
               />
             </Routes>
