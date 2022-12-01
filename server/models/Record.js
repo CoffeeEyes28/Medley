@@ -14,16 +14,10 @@ const recordSchema = new Schema({
         type: String,
         required: true,
     },
-<<<<<<< HEAD
-    topFour: {
-        type: Boolean,
-        default: false
-=======
     topFour:{
         type: Boolean,
         default: false
 
->>>>>>> main
     }
 })
 
