@@ -77,10 +77,6 @@ const TopFour = () => {
                                 <Card.Body>
                                     <Card.Title>{medley.artist}</Card.Title>
                                     <p className='small'>Album: {medley.album_name}</p>
-                                    {/* <Card.Text>{book.description}</Card.Text> */}
-                                    {/* <Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._id)}>
-                      Delete this Album!
-                    </Button> */}
                                     <Button onClick={handleOpen}>Update</Button>
                                     
                                     <Modal
