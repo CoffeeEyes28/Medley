@@ -85,7 +85,7 @@ Here is an example of a user's Medley, with their chosen albums.
 ## Deployed URL
 ---
 
-Click the notes [🎶]([LINK GO HERE]])  to see Medley.
+Click the notes [🎶](http://www.staggeringbeauty.com/)  to see Medley.
 
 
 ## Contributors
