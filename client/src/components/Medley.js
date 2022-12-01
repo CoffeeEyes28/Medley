@@ -1,10 +1,10 @@
 import React from 'react';
-import {  Container, CardColumns, Card, Button } from 'react-bootstrap';
+import {  Container, Card, Button } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 import { REMOVE_RECORD } from '../utils/mutations';
 import Auth from '../utils/auth';
-import AlbumArt from '../components/AlbumArt';
+// import AlbumArt from '../components/AlbumArt';
 
 const Medley = () => {
     const { loading, data } = useQuery(GET_ME);
