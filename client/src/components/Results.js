@@ -5,7 +5,6 @@ import { SAVE_RECORD } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import Icon from '@mui/material/Icon'
 import Button from '@mui/material/Button';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Box from '@mui/material/Box'
 
 
@@ -68,7 +67,18 @@ const addToMedley = async (album_name) => {
        <Box>
           
         {recordData.map((artist) => (
-          <Box sx={{backgroundColor: 'grey', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', justifyContent: 'center', m: 3.8 , width: 600, alignItems: 'center'}}>
+          <Box sx={{backgroundColor: 'grey', 
+          opacity: [0.96], 
+          display: 'flex', 
+          flexDirection: 'column', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center', 
+          m: 3.8 ,
+           width: 600, 
+           alignItems: 'center',
+           borderRadius: 20
+           
+           }}>
           <br></br>
           <br></br>
             <Box key={artist.album_name} sx={{textAlign: 'center'}}>
@@ -85,13 +95,13 @@ const addToMedley = async (album_name) => {
                      disabled={userData.medley.some(record => artist.album_name === record.album_name)}
                      onClick={() => addToMedley(artist.album_name)}>
                     <Icon>
-                        {userData.medley.some(record => artist.album_name === record.album_name) ? <CheckCircleIcon/> : 'add_circle'}</Icon>
+                        {userData.medley.some(record => artist.album_name === record.album_name) ? 'check_circle' : 'add_circle'}</Icon>
                         </Button>
                 )}
                
                <br></br>
             </Box>
-           
+           <br></br>
            </Box>
         ))}
       <br></br>

@@ -64,20 +64,29 @@ const Searchbar = () => {
 
 
   return (
-    <Box>
+    <Box sx={{
+      
+      display: 'flex',
+      flexDirection: 'column',
+      flexWrap: 'nowrap',
+      justifyContent: 'center',
+      alignItems: 'baseline',
+    }}>
     <Box
       sx={{
         m:4,
         width: 400,
         height: 180,
         backgroundColor: color,
-        opacity: [0.9]
+        opacity: [0.9],
+        borderRadius: 10,
+        
       }}
     >
       <Box
         component="form"
         sx={{
-         
+        
           
         }}
       >
