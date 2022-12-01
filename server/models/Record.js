@@ -13,6 +13,10 @@ const recordSchema = new Schema({
     image: {
         type: String,
         required: true,
+    },
+    topFour: {
+        type: Boolean,
+        default: false
     }
 })
 
