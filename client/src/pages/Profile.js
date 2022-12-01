@@ -5,6 +5,7 @@ import React from 'react'
 // import Searchbar from '../components/Searchbar';
 // import TopFour from '../components/TopFour';
 import Medley from '../components/Medley';
+import TopFour from '../components/TopFour';
 
 const Profile = () => {
     return (
@@ -13,7 +14,7 @@ const Profile = () => {
             <br></br>
             <br></br>
             <h1>Top Four from My Medley</h1>
-           
+           <TopFour />
             <br></br>
             <br></br>
             <h1> My Medley</h1>
