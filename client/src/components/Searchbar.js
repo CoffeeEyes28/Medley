@@ -64,6 +64,7 @@ const Searchbar = () => {
 
 
   return (
+    <Box>
     <Box
       sx={{
         m:4,
@@ -116,7 +117,9 @@ const Searchbar = () => {
         </Container>
       </Box>
 
-      <Results props={results}  />
+      
+    </Box>
+    <Results props={results}  />
     </Box>
   );
 };
