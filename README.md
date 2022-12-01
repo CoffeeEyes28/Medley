@@ -24,6 +24,22 @@ SO THAT I can show off my own collection
 
 ---
 ```md
+* HTML5
+* CSS 
+* JavaScript
+* JSON
+* BCrypt
+* Connect Session Sequelize
+* Cookie Session
+* Dotenv
+* Express
+* Express Handlebars
+* Express Session
+* Multer
+* Multer Storage Cloudinary
+* MSQL12
+* Path
+* Sequelize
 * Sweat
 * Blood
 * Tears
