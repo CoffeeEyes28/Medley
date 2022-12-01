@@ -84,7 +84,7 @@ import AlbumArt from '../components/AlbumArt';
 // export default TopFour
 
 const TopFour = () => {
-    const { loading, data } = useQuery(GET_ME); 
+    const { data } = useQuery(GET_ME); 
     const userData = data?.me || [];
     console.log(userData)
     return (
