@@ -90,9 +90,12 @@ const Medley = () => {
                     <Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._id)}>
                       Delete this Album!
                     </Button>
-                    <Button className='btn-block btn-danger' onClick={() => handleSaveTop(medley)}>
+
+                    {/* button save to top four button will be hidden if four are on topFour */}
+                    {userData.length<5&&( <Button className='btn-block btn-danger' onClick={() => handleSaveTop(medley)}>
                       Save to topFour!
-                    </Button>
+                    </Button>)}
+                  
                   </Card.Body>
                 </Card>
               );

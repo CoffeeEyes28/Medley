@@ -5,7 +5,7 @@ import React from 'react'
 // import Searchbar from '../components/Searchbar';
 import TopFour from '../components/TopFour';
 import Medley from '../components/Medley';
-import TopFour from '../components/TopFour';
+
 
 
 const Profile = () => {
