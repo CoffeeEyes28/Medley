@@ -137,8 +137,8 @@ mutation removeReaction($reactionId: ID!, $userId: ID!) {
 `;
 
 export const UPDATE_TOP = gql`
-mutation updateTop($input: SaveRecordInput!, $topFour: String!) {
-    updateTop(input: $input, topFour: $topFour) {
+mutation updateTop($input: SaveRecordInput!, $topFourId: String!) {
+    updateTop(input: $input, topFourId: $topFourId) {
       _id
       topFourId 
   }
