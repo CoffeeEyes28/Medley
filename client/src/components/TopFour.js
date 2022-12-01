@@ -8,6 +8,7 @@ import { SAVE_TOP, UPDATE_TOP } from '../utils/mutations';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
+import Medley from '../components/Medley'
 
 const style = {
     position: 'absolute',
@@ -19,7 +20,18 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
+
+const filtered = (medley, topFour) => {
+    return medley.filter((datum) => {
+       for (let i =0; i< topFour.length;i++ ) {
+        if (datum.album_name == topFour[i].album_name) {
+                return false;
+            }
+        }
+        return true
+   })
+}
 
 const TopFour = () => {
     const { loading, data } = useQuery(GET_ME);
@@ -77,22 +89,34 @@ const TopFour = () => {
                                 <Card.Body>
                                     <Card.Title>{medley.artist}</Card.Title>
                                     <p className='small'>Album: {medley.album_name}</p>
-                                    <Button onClick={handleOpen}>Update</Button>
-                                    
+                                    <Button onClick={handleOpen} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>
+
                                     <Modal
                                         open={open}
                                         onClose={handleClose}
                                         aria-labelledby="modal-modal-title"
                                         aria-describedby="modal-modal-description"
                                     >
-                                    <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>    
+                                        <Box sx={style}>
+                                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                                Update One of Your Top Four!
+                                            </Typography>
+                                            <Box>
+                                                {
+                                                    filtered(userData.medley, userData.topFour).map((topFourOption) => {
+                                                        return (
+                                                            <Box>
+                                                                <img src={topFourOption.image}></img>
+                                                                <br></br>
+                                                            <Button className='btn-block btn-danger'>Update with Selected Artist</Button>
+                                                            </Box>
+                                                        )
+                                                    })
+                                                }
+                                                < br ></br>
+                                                
+                                            </Box>
+                                        </Box>
                                     </Modal>
                                 </Card.Body>
                             </Card>
