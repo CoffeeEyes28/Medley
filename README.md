@@ -29,6 +29,7 @@ SO THAT I can show off my own collection
 * JavaScript
 * JSON
 * BCrypt
+* Bootstrap
 * Connect Session Sequelize
 * Cookie Session
 * Dotenv
