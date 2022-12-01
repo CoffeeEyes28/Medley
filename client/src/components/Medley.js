@@ -5,10 +5,12 @@ import { GET_ME } from '../utils/queries';
 import { REMOVE_RECORD } from '../utils/mutations';
 import Auth from '../utils/auth';
 // import AlbumArt from '../components/AlbumArt';
+import { SAVE_TOP} from '../utils/mutations';
 
 const Medley = () => {
     const { loading, data } = useQuery(GET_ME);
     const [removeRecord, { error }] = useMutation(REMOVE_RECORD);
+    const [saveTop, {err}] = useMutation(SAVE_TOP);
     const userData = data?.me || [];
 
     // const recordData = props.props
@@ -24,7 +26,7 @@ const Medley = () => {
         console.log(_id)
         try {
             let data = await removeRecord({
-                variables: { medley: _id  },
+                variables: { _id: _id  },
             });
             console.log(data)
 
@@ -32,6 +34,30 @@ const Medley = () => {
             console.error(error);
         }
     };
+
+    const handleSaveTop = async (input) => {
+      const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+      if (!token) {
+        return false;
+    }
+    console.log(input)
+    const frank = { 
+      artist: input.artist, album_name: input.album_name, 
+      image: input.image
+      }
+    try {
+        let data = await saveTop({
+            variables: {input:frank},
+        });
+        console.log(data)
+
+    } catch (err) {
+        console.error(error);
+    }
+
+
+    }
 
     if (loading) {
         return <h2>LOADING...</h2>;
@@ -61,8 +87,11 @@ const Medley = () => {
                     <Card.Title>{medley.artist}</Card.Title>
                     <p className='small'>Album: {medley.album_name}</p>
                     {/* <Card.Text>{book.description}</Card.Text> */}
-                    <Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._Id)}>
+                    <Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._id)}>
                       Delete this Album!
+                    </Button>
+                    <Button className='btn-block btn-danger' onClick={() => handleSaveTop(medley)}>
+                      Save to topFour!
                     </Button>
                   </Card.Body>
                 </Card>

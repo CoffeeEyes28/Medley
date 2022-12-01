@@ -49,6 +49,7 @@ const resolvers = {
         },
 
         saveRecord: async (parent, { input }, context) => {
+            console.log("ADDMEDLEY")
             if(context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
@@ -61,6 +62,7 @@ const resolvers = {
         },
 
         saveTop: async (parent, { input }, context) => {
+            console.log("TOPFOUR")
             if(context.user){
                 const userArray = await User.findOne({ _id: context.user._id})
                 const topFourLength = userArray.topFour.length
