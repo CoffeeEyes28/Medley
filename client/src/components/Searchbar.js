@@ -8,16 +8,17 @@ import { SAVE_RECORD } from '../utils/mutations';
 import Results from "./Results";
 
 import Box from "@mui/material/Box";
+import Container from '@mui/material/Container';
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { grey } from "@mui/material/colors";
+import { amber } from "@mui/material/colors";
 
 import search from "../utils/API";
 import Auth from '../utils/auth';
 
 const Searchbar = () => {
-  const color = grey[300];
+  const color = amber[100];
 
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
@@ -65,27 +66,45 @@ const Searchbar = () => {
   return (
     <Box
       sx={{
+        m:4,
         width: 400,
-        height: 400,
+        height: 180,
         backgroundColor: color,
+        opacity: [0.9]
       }}
     >
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+         
+          
         }}
       >
+       
+        <Container sx={{
+        display: 'flex', 
+        flexDirection: 'column', 
+        flexWrap: 'wrap', 
+        alignItems: 'center',
+        justifyContent: 'center', 
+       
+         }}>
+        
+        <h2>Search an Artist </h2>
+       
+       
         <TextField
+      
           id="outlined-basic"
           label="Artist Name"
           variant="outlined"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
         />
+       
         <br></br>
         <Button
-          
+          sx={{width: '10ch'}}
           onClick={handleFormSubmit}
           size="small"
           variant="contained"
@@ -93,6 +112,8 @@ const Searchbar = () => {
         >
           Submit
         </Button>
+        
+        </Container>
       </Box>
 
       <Results props={results}  />
