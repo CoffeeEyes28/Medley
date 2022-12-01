@@ -1,5 +1,3 @@
-// placeholder
-
 import { Divider } from '@mui/material';
 import React from 'react'
 import banner from "../Assets/Images/banner.jpg";
@@ -15,7 +13,6 @@ const Home = () => {
         <Aside />
       </aside>
     </div>
-   
   )
 }
 
