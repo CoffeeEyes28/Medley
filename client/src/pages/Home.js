@@ -8,7 +8,10 @@ const Home = () => {
     <div>
       <br></br>
       <br></br>
+     
       <Searchbar />
+      
+      
       <aside>
       {/* <aside style={{float: "right"}}> */}
         <Aside />

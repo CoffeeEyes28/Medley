@@ -3,22 +3,24 @@
 import React from 'react'
 // import banner from "../Assets/Images/banner.jpg";
 // import Searchbar from '../components/Searchbar';
-import TopFour from '../components/TopFour';
+// import TopFour from '../components/TopFour';
 import Medley from '../components/Medley';
+import Reaction from '../components/Reaction';
 
 
-const Profile = () => {
+const Profile = ({allowDelete}) => {
     return (
         <div>
+            <Reaction />
             <br></br>
             <br></br>
             <br></br>
             <h1>Top Four from My Medley</h1>
-            <TopFour />
+            {/* <TopFour /> */}
             <br></br>
             <br></br>
             <h1> My Medley</h1>
-            <Medley />
+            <Medley allowDelete={allowDelete}/>
         </div>
 
     )
