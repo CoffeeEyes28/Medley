@@ -140,7 +140,13 @@ export const UPDATE_TOP = gql`
 mutation updateTop($input: SaveRecordInput!, $topFourId: String!) {
     updateTop(input: $input, topFourId: $topFourId) {
       _id
-      topFourId 
+      topFour{
+        _id
+          artist
+          album_name
+          image
+
+      }
   }
 }
 `;
