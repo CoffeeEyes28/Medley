@@ -61,11 +61,11 @@ function App() {
             />
               <Route
                 path="/me"
-                element={<Profile />}
+                element={<Profile allowDelete={true} />}
               />
               <Route
                 path="/profiles/:username"
-                element={<Profile />}
+                element={<Profile allowDelete={false}/>}
               />
             </Routes>
           </div>
