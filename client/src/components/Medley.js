@@ -102,11 +102,11 @@ const Medley = ({allowDelete}) => {
 
       <Container>
         <div className="flex-row justify-center mb-3">
-          {/* <h2>
+          <h2>
             {userData.medley.length
               ? `Viewing ${userData.medley.length} saved ${userData.medley.length === 1 ? 'medley' : 'medleys'}:`
               : 'You have no saved medleys!'}
-          </h2> */}
+          </h2>
           <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
             Viewing {username ? `${userData.username}'s` : 'your'} profile.
           </h2>
