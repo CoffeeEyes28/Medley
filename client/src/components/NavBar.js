@@ -39,12 +39,13 @@ const AppNavbar = () => {
         </Container>
       </Navbar>
       {/* set modal data up */}
-      <Modal
+      <Modal 
         size='lg'
         show={showModal}
         onHide={() => setShowModal(false)}
         aria-labelledby='signup-modal'>
         {/* tab container to do either signup or login component */}
+        <div class="p-3 mb-2 bg-dark text-white btn-warning">
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
             <Modal.Title id='signup-modal'>
@@ -69,6 +70,7 @@ const AppNavbar = () => {
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
+        </div>
       </Modal>
     </>
   );
