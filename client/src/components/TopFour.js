@@ -39,30 +39,66 @@ const TopFour = () => {
     const [saveTop] = useMutation(SAVE_TOP);
     const [updateTop] = useMutation(UPDATE_TOP);
     const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [updateMedley, setUpdateMedley] = useState(null);
+    const handleOpen = (updateMedley) => {
+        setUpdateMedley(updateMedley);
+      return  setOpen(true);
+    }
+    const handleClose = () => {
+        
+        window.location.reload();
+       
+        return setOpen(false)
+        
+    };
 
-    const handleSaveTop = async (input) => {
+    // const handleSaveTop = async (input) => {
+    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    //     if (!token) {
+    //         return false;
+    //     }
+    //     console.log(input)
+    //     const frank = {
+    //         artist: input.artist, album_name: input.album_name,
+    //         image: input.image
+    //     }
+    //     try {
+    //         let data = await saveTop({
+    //             variables: { input: frank },
+    //         });
+    //         console.log(data)
+
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
+
+    const handleUpdateTop = async ( input, Id) => {
+        const recordToUpdate = Id;
+        console.log(recordToUpdate)
+        console.log(input)
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-        if (!token) {
-            return false;
-        }
-        console.log(input)
         const frank = {
-            artist: input.artist, album_name: input.album_name,
+            artist: input.artist,
+            album_name: input.album_name,
             image: input.image
         }
-        try {
-            let data = await saveTop({
-                variables: { input: frank },
-            });
-            console.log(data)
-
-        } catch (err) {
-            console.error(err);
+        if(!token) {
+            return false;
         }
-    }
+
+        try {
+            await updateTop({
+                variables: {input: frank, topFourId: recordToUpdate._id},
+            })
+        } catch (err) {
+            console.error(err)
+        }
+
+
+    };
 
     if (loading) {
         return <h2>LOADING...</h2>;
@@ -89,9 +125,15 @@ const TopFour = () => {
                                 <Card.Body>
                                     <Card.Title>{medley.artist}</Card.Title>
                                     <p className='small'>Album: {medley.album_name}</p>
-                                    <Button onClick={handleOpen} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>
+                                    <Button onClick={() => handleOpen(medley)} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>
 
-                                    <Modal
+                                   
+                                </Card.Body>
+                            </Card>
+
+                        );
+                    })}
+                     <Modal
                                         open={open}
                                         onClose={handleClose}
                                         aria-labelledby="modal-modal-title"
@@ -105,10 +147,11 @@ const TopFour = () => {
                                                 {
                                                     filtered(userData.medley, userData.topFour).map((topFourOption) => {
                                                         return (
-                                                            <Box>
+                                                            <Box key={topFourOption._id}>
+                                                                
                                                                 <img src={topFourOption.image}></img>
                                                                 <br></br>
-                                                            <Button className='btn-block btn-danger'>Update with Selected Artist</Button>
+                                                            <Button className='btn-block btn-danger' onClick={() => {handleClose(); handleUpdateTop(topFourOption, updateMedley)}}>Update with Selected Artist</Button>
                                                             </Box>
                                                         )
                                                     })
@@ -118,11 +161,6 @@ const TopFour = () => {
                                             </Box>
                                         </Box>
                                     </Modal>
-                                </Card.Body>
-                            </Card>
-
-                        );
-                    })}
                 </div>
             </Container>
         </>

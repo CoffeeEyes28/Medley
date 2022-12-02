@@ -81,7 +81,7 @@ const resolvers = {
         },
 
         updateTop: async (parent, { input, topFourId }, context) => {
-          
+          console.log(input, ' ', topFourId)
             if(context.user) {
                 const updatedTopFour = await User.updateOne( { _id: context.user._id, "topFour._id": topFourId}, 
               
