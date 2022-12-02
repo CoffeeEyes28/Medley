@@ -19,10 +19,12 @@ query me {
         image
       }
       reactions{
-        reactionId
+        _id
+        username
       }
       reacted{
-        reactionId
+        _id
+        username
       }
       medleyTotal
       reactionCount
@@ -50,10 +52,12 @@ query user($username: String!) {
         image
       }
       reactions{
-        reactionId
+        _id
+        username
       }
       reacted{
-        reactionId
+        _id
+        username
       }
       medleyTotal
       reactionCount
