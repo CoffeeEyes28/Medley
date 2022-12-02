@@ -24,16 +24,16 @@ const style = {
 
 const filtered = (medley, topFour) => {
     return medley.filter((datum) => {
-       for (let i =0; i< topFour.length;i++ ) {
-        if (datum.album_name == topFour[i].album_name) {
+        for (let i = 0; i < topFour.length; i++) {
+            if (datum.album_name == topFour[i].album_name) {
                 return false;
             }
         }
         return true
-   })
+    })
 }
 
-const TopFour = ({allowDelete, userData}) => {
+const TopFour = ({ allowDelete, userData }) => {
     // const { loading, data } = useQuery(GET_ME);
     // const userData = data?.me || [];
     const [saveTop] = useMutation(SAVE_TOP);
@@ -42,14 +42,14 @@ const TopFour = ({allowDelete, userData}) => {
     const [updateMedley, setUpdateMedley] = useState(null);
     const handleOpen = (updateMedley) => {
         setUpdateMedley(updateMedley);
-      return  setOpen(true);
+        return setOpen(true);
     }
     const handleClose = () => {
-        
+
         window.location.reload();
-       
+
         return setOpen(false)
-        
+
     };
 
     // const handleSaveTop = async (input) => {
@@ -74,7 +74,7 @@ const TopFour = ({allowDelete, userData}) => {
     //     }
     // }
 
-    const handleUpdateTop = async ( input, Id) => {
+    const handleUpdateTop = async (input, Id) => {
         const recordToUpdate = Id;
         console.log(recordToUpdate)
         console.log(input)
@@ -85,13 +85,13 @@ const TopFour = ({allowDelete, userData}) => {
             album_name: input.album_name,
             image: input.image
         }
-        if(!token) {
+        if (!token) {
             return false;
         }
 
         try {
             await updateTop({
-                variables: {input: frank, topFourId: recordToUpdate._id},
+                variables: { input: frank, topFourId: recordToUpdate._id },
             })
         } catch (err) {
             console.error(err)
@@ -125,42 +125,42 @@ const TopFour = ({allowDelete, userData}) => {
                                 <Card.Body>
                                     <Card.Title>{medley.artist}</Card.Title>
                                     <p className='small'>Album: {medley.album_name}</p>
-                                   {allowDelete && (<Button onClick={() => handleOpen(medley)} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>)} 
+                                    {allowDelete && (<Button onClick={() => handleOpen(medley)} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>)}
 
-                                   
+
                                 </Card.Body>
                             </Card>
 
                         );
                     })}
-                     <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style}>
-                                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                Update One of Your Top Four!
-                                            </Typography>
-                                            <Box>
-                                                {
-                                                    filtered(userData.medley, userData.topFour).map((topFourOption) => {
-                                                        return (
-                                                            <Box key={topFourOption._id}>
-                                                                
-                                                                <img src={topFourOption.image}></img>
-                                                                <br></br>
-                                                            <Button className='btn-block btn-danger' onClick={() => {handleClose(); handleUpdateTop(topFourOption, updateMedley)}}>Update with Selected Artist</Button>
-                                                            </Box>
-                                                        )
-                                                    })
-                                                }
-                                                < br ></br>
-                                                
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Update One of Your Top Four!
+                            </Typography>
+                            <Box>
+                                {
+                                    filtered(userData.medley, userData.topFour).map((topFourOption) => {
+                                        return (
+                                            <Box key={topFourOption._id}>
+
+                                                <img src={topFourOption.image}></img>
+                                                <br></br>
+                                                <Button className='btn-block btn-danger' onClick={() => { handleClose(); handleUpdateTop(topFourOption, updateMedley) }}>Update with Selected Artist</Button>
                                             </Box>
-                                        </Box>
-                                    </Modal>
+                                        )
+                                    })
+                                }
+                                < br ></br>
+
+                            </Box>
+                        </Box>
+                    </Modal>
                 </div>
             </Container>
         </>
