@@ -64,7 +64,7 @@ function App() {
                 element={<Profile allowDelete={true} />}
               />
               <Route
-                path="/profiles/:username"
+                path="/:username"
                 element={<Profile allowDelete={false}/>}
               />
             </Routes>

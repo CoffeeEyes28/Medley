@@ -111,7 +111,7 @@ const Medley = ({allowDelete, userData}) => {
                     {allowDelete && !userData.topFour.some((record => record.album_name === medley.album_name)) && (<Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._id)}>
                       Delete this Album!
                     </Button>)}
-                    {userData.topFour.length<5  &&  ( <Button hidden={userData.topFour.length>=4 || userData.topFour.some((record => record.album_name === medley.album_name))}className='btn-block btn-danger' onClick={() => handleSaveTop(medley)}>
+                    {allowDelete && userData.topFour.length<5  &&  ( <Button hidden={userData.topFour.length>=4 || userData.topFour.some((record => record.album_name === medley.album_name))}className='btn-block btn-danger' onClick={() => handleSaveTop(medley)}>
   Save to topFour!
  </Button>) }
 
