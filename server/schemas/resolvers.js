@@ -122,6 +122,7 @@ const resolvers = {
             if (context.user) {
                 const reaction = await Reaction.create({
                     username: context.user.username,
+                    
                 });
 
                 await User.findOneAndUpdate(
