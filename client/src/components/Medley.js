@@ -7,7 +7,7 @@ import { GET_USER, GET_ME } from '../utils/queries';
 import { REMOVE_RECORD } from '../utils/mutations';
 import Auth from '../utils/auth';
 // import AlbumArt from '../components/AlbumArt';
-// import { SAVE_TOP} from '../utils/mutations';
+import { SAVE_TOP } from '../utils/mutations';
 
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -23,21 +23,15 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 
-const Medley = ({allowDelete}) => {
-  const { username } = useParams();
+const Medley = ({ allowDelete, userData }) => {
 
-  const { loading, data } = useQuery(username ? GET_USER : GET_ME, {
-    variables: { username: username },
-  });
+
+
 
   const [removeRecord, { error }] = useMutation(REMOVE_RECORD);
-  // const [saveTop, {err}] = useMutation(SAVE_TOP);
+  const [saveTop, { err }] = useMutation(SAVE_TOP);
 
-  const userData = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
-    return <Navigate to="/me" />;
-  }
+
 
 
   // create function that accepts the medley mongo _id value as param and deletes the album from the database
@@ -59,33 +53,31 @@ const Medley = ({allowDelete}) => {
     }
   };
 
-  // const handleSaveTop = async (input) => {
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const handleSaveTop = async (input) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  //   if (!token) {
-  //     return false;
-  // }
-  // console.log(input)
-  // const frank = { 
-  //   artist: input.artist, album_name: input.album_name, 
-  //   image: input.image
-  //   }
-  // try {
-  //     let data = await saveTop({
-  //         variables: {input:frank},
-  //     });
-  //     console.log(data)
+    if (!token) {
+      return false;
+    }
+    console.log(input)
+    const frank = {
+      artist: input.artist, album_name: input.album_name,
+      image: input.image
+    }
+    try {
+      let data = await saveTop({
+        variables: { input: frank },
+      });
+      console.log(data)
 
-  // } catch (err) {
-  //     console.error(error);
-  // }
+    } catch (err) {
+      console.error(error);
+    }
 
 
-  // }
-
-  if (loading) {
-    return <h2>LOADING...</h2>;
   }
+
+
 
   if (!userData?.username) {
     return (
@@ -106,10 +98,8 @@ const Medley = ({allowDelete}) => {
             {userData.medley.length
               ? `Viewing ${userData.medley.length} saved ${userData.medley.length === 1 ? 'medley' : 'medleys'}:`
               : 'You have no saved medleys!'}
-          </h2>
-          <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-            Viewing {username ? `${userData.username}'s` : 'your'} profile.
-          </h2>
+          </h2> 
+
           <Stack direction="row" spacing={2}>
             {userData.medley.map((medley) => {
               return (
@@ -118,8 +108,11 @@ const Medley = ({allowDelete}) => {
                   <Card.Body>
                     <Card.Title>{medley.artist}</Card.Title>
                     <p className='small'>Album: {medley.album_name}</p>
-                    {allowDelete && (<Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._id)}>
+                    {allowDelete && !userData.topFour.some((record => record.album_name === medley.album_name)) && (<Button className='btn-block btn-danger' onClick={() => handleRemoveRecord(medley._id)}>
                       Delete this Album!
+                    </Button>)}
+                    {userData.topFour.length < 5 || userData.topFour.some((record => record.album_name === medley.album_name)) ? '' : (<Button disabled={userData.topFour.some((record => record.album_name === medley.album_name))} className='btn-block btn-danger' onClick={() => handleSaveTop(medley)}>
+                      Save to topFour!
                     </Button>)}
 
                   </Card.Body>

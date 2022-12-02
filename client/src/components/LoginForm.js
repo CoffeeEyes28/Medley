@@ -49,6 +49,7 @@ const LoginForm = () => {
 
   return (
     <>
+    <div class="p-3 mb-2 bg-dark text-white">
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
@@ -78,13 +79,18 @@ const LoginForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
+
+
+        <div class="modal-footer d-flex justify-content-center">
         <Button
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='success' className='btn-block btn-warning'>
           Submit
         </Button>
+        </div>
       </Form>
+      </div>
     </>
   );
 };

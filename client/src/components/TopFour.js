@@ -33,9 +33,9 @@ const filtered = (medley, topFour) => {
    })
 }
 
-const TopFour = () => {
-    const { loading, data } = useQuery(GET_ME);
-    const userData = data?.me || [];
+const TopFour = ({allowDelete, userData}) => {
+    // const { loading, data } = useQuery(GET_ME);
+    // const userData = data?.me || [];
     const [saveTop] = useMutation(SAVE_TOP);
     const [updateTop] = useMutation(UPDATE_TOP);
     const [open, setOpen] = useState(false);
@@ -100,9 +100,9 @@ const TopFour = () => {
 
     };
 
-    if (loading) {
-        return <h2>LOADING...</h2>;
-    }
+    // if (loading) {
+    //     return <h2>LOADING...</h2>;
+    // }
 
     return (
         <>
@@ -125,7 +125,7 @@ const TopFour = () => {
                                 <Card.Body>
                                     <Card.Title>{medley.artist}</Card.Title>
                                     <p className='small'>Album: {medley.album_name}</p>
-                                    <Button onClick={() => handleOpen(medley)} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>
+                                   {allowDelete && (<Button onClick={() => handleOpen(medley)} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>)} 
 
                                    
                                 </Card.Body>
