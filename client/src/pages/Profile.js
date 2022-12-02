@@ -5,11 +5,13 @@ import React from 'react'
 // import Searchbar from '../components/Searchbar';
 import TopFour from '../components/TopFour';
 import Medley from '../components/Medley';
+import Reaction from '../components/Reaction';
 
 
-const Profile = () => {
+const Profile = ({allowDelete}) => {
     return (
         <div>
+            <Reaction />
             <br></br>
             <br></br>
             <br></br>
@@ -18,7 +20,7 @@ const Profile = () => {
             <br></br>
             <br></br>
             <h1> My Medley</h1>
-            <Medley />
+            <Medley allowDelete={allowDelete}/>
         </div>
 
     )

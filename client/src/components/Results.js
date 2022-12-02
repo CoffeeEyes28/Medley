@@ -5,7 +5,8 @@ import { SAVE_RECORD } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import Icon from '@mui/material/Icon'
 import Button from '@mui/material/Button';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Box from '@mui/material/Box'
+
 
 import Auth from '../utils/auth';
 
@@ -63,30 +64,50 @@ const addToMedley = async (album_name) => {
 
 
     return (
-        <div>
+       <Box>
+          
         {recordData.map((artist) => (
-
-            <div key={artist.album_name}>
-                <h1>{artist.artist}</h1>
-                <h2>{artist.album_name}</h2>
+          <Box sx={{backgroundColor: 'grey', 
+          opacity: [0.96], 
+          display: 'flex', 
+          flexDirection: 'column', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center', 
+          m: 3.8 ,
+           width: 600, 
+           alignItems: 'center',
+           borderRadius: 20
+           
+           }}>
+          <br></br>
+          <br></br>
+            <Box key={artist.album_name} sx={{textAlign: 'center'}}>
+                
                 <img src={artist.image} alt={artist.album_name}/>
-                <br></br>
+               
+                  <h1>{artist.album_name}</h1>
+                <p>{artist.artist}</p>
+                
+                
                 {Auth.loggedIn() && (
                     
                      <Button 
                      disabled={userData.medley.some(record => artist.album_name === record.album_name)}
                      onClick={() => addToMedley(artist.album_name)}>
                     <Icon>
-                        {userData.medley.some(record => artist.album_name === record.album_name) ? <CheckCircleIcon/> : 'add_circle'}</Icon>
+                        {userData.medley.some(record => artist.album_name === record.album_name) ? 'check_circle' : 'add_circle'}</Icon>
                         </Button>
                 )}
                
-            </div>
-
+               <br></br>
+            </Box>
+           <br></br>
+           </Box>
         ))}
+      <br></br>
 
+      </Box>
 
-</div>
        
     )
 }
