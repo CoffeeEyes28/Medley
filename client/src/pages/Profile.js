@@ -5,11 +5,12 @@ import React from 'react'
 // import Searchbar from '../components/Searchbar';
 import TopFour from '../components/TopFour';
 import Medley from '../components/Medley';
-
+import Reaction from '../components/Reaction';
 
 const Profile = () => {
     return (
         <div>
+            <Reaction />
             <br></br>
             <br></br>
             <br></br>
