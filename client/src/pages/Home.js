@@ -10,6 +10,7 @@ const Home = () => {
       <br></br>
       <Searchbar />
       <aside>
+      {/* <aside style={{float: "right"}}> */}
         <Aside />
       </aside>
     </div>
