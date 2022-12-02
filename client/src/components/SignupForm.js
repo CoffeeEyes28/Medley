@@ -95,12 +95,15 @@ const SignupForm = () => {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
+
+        <div class="modal-footer d-flex justify-content-center">
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='success' className='btn-block btn-warning'>
           Submit
         </Button>
+        </div>
       </Form>
     </>
   );
