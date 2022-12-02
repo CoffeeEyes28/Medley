@@ -11,7 +11,7 @@ const resolvers = {
         },
 
         user: async (parent, { username }) => {
-            return User.findOne({ username: username });
+            return User.findOne({ username: new RegExp('^'+username+'$', "i") });
         },
 
         me: async (parent, args, context) => {
@@ -122,6 +122,7 @@ const resolvers = {
             if (context.user) {
                 const reaction = await Reaction.create({
                     username: context.user.username,
+                    
                 });
 
                 await User.findOneAndUpdate(

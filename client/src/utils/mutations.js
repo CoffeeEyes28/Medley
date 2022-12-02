@@ -121,7 +121,7 @@ export const ADD_REACTION = gql`
 mutation addReaction($userId: ID!, $username: String!) {
     addReaction(userId: $userId, username: $username) {
         _id
-        reactionId
+        username
   }
 }
 `;
@@ -130,7 +130,7 @@ export const REMOVE_REACTION = gql`
 mutation removeReaction($reactionId: ID!, $userId: ID!) {
     removeReaction(reactionId: $reactionId, userId: $userId) {
       _id
-      reactionId
+      username
         
   }
 }
