@@ -13,7 +13,7 @@ const Footer = () => {
 
   return (
 
-    <footer className="small bg-light fixed-bottom ">
+    <footer className=" container-fluid small bg-light absolute-bottom ">
       <div className="  ">
         <div className="row justify-content-md-center py-2">
           <div className="col-md-auto">
