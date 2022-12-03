@@ -11,6 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import ImageList from '@mui/material/ImageList';
+import { grey } from "@mui/material/colors";
 
 
 
@@ -18,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 
 const Aside = () => {
-
+    const colorGrey = grey[50];
     const { loading, data } = useQuery(GET_All_USERS)
 
     const userData = data?.users || [];
@@ -31,17 +32,22 @@ const Aside = () => {
             sx={{
                 display: 'inline-block',
                 width: '100%'
-
             }}>
-
+            
             {userData.map((users) => (
-                <Card variant='outlined'>
-                    <Grid
-                        container spacing={1}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                users.topFour.length < 4 ? null :
+                    (<Card sx={{ 
+                        mt: 10,
+                        ml:10,
+                     }} variant='outlined'>
+                    <Grid sx={{
+                        pl:10,
+                    }}
                     >
                         <CardContent>
-                            <Box>
+                            <Box sx={{ 
+                            pt: 2,
+                            width:1000, }}>
                                 <Typography
                                     variant='h4'
                                     display='flex'
@@ -55,10 +61,14 @@ const Aside = () => {
                                     </Link>
                                 </Typography>
                             </Box>
-                            <ImageList sx={{ pt: 4 }} cols={2} rows={2} rowHeight={164}>
+                            <ImageList sx={{ 
+                                width: 1200,
+                                 }} cols={2} rows={2} >
                                 {users.topFour.map((topFour) => (
 
-                                    <CardMedia item key={users}>
+                                    <CardMedia sx={{ 
+                                         }}
+                                         item key={users}>
 
                                         <img src={topFour.image}></img>
 
@@ -67,9 +77,11 @@ const Aside = () => {
                             </ImageList>
                         </CardContent>
                     </Grid>
-                </Card>
+                </Card>)
             ))}
         </Box>
     );
 }
+
+
 export default Aside;

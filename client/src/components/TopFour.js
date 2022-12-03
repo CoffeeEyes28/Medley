@@ -9,13 +9,20 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Medley from '../components/Medley'
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { CardContent, CardMedia } from '@mui/material';
+
+
+
 
 const style = {
     position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
+    top: '10%',
+    left: '25%',
+    // transform: 'translate(-50%, -50%)',
+    // width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -24,16 +31,16 @@ const style = {
 
 const filtered = (medley, topFour) => {
     return medley.filter((datum) => {
-       for (let i =0; i< topFour.length;i++ ) {
-        if (datum.album_name == topFour[i].album_name) {
+        for (let i = 0; i < topFour.length; i++) {
+            if (datum.album_name == topFour[i].album_name) {
                 return false;
             }
         }
         return true
-   })
+    })
 }
 
-const TopFour = ({allowDelete, userData}) => {
+const TopFour = ({ allowDelete, userData }) => {
     // const { loading, data } = useQuery(GET_ME);
     // const userData = data?.me || [];
     const [saveTop] = useMutation(SAVE_TOP);
@@ -41,15 +48,18 @@ const TopFour = ({allowDelete, userData}) => {
     const [open, setOpen] = useState(false);
     const [updateMedley, setUpdateMedley] = useState(null);
     const handleOpen = (updateMedley) => {
+        console.log(updateMedley._id)
         setUpdateMedley(updateMedley);
-      return  setOpen(true);
+        return setOpen(true);
     }
     const handleClose = () => {
-        
-        window.location.reload();
-       
+
+        setTimeout(function(){
+            window.location.reload();
+         }, 50);
+
         return setOpen(false)
-        
+
     };
 
     // const handleSaveTop = async (input) => {
@@ -74,7 +84,8 @@ const TopFour = ({allowDelete, userData}) => {
     //     }
     // }
 
-    const handleUpdateTop = async ( input, Id) => {
+    const handleUpdateTop = async (input, Id) => {
+       
         const recordToUpdate = Id;
         console.log(recordToUpdate)
         console.log(input)
@@ -85,13 +96,13 @@ const TopFour = ({allowDelete, userData}) => {
             album_name: input.album_name,
             image: input.image
         }
-        if(!token) {
+        if (!token) {
             return false;
         }
 
         try {
             await updateTop({
-                variables: {input: frank, topFourId: recordToUpdate._id},
+                variables: { input: frank, topFourId: recordToUpdate._id },
             })
         } catch (err) {
             console.error(err)
@@ -111,57 +122,60 @@ const TopFour = ({allowDelete, userData}) => {
             <h1>Viewing your Medleys!</h1>
           </Container>
         </Jumbotron> */}
-            <Container>
-                <h2>
-                    {userData.topFour.length
-                        ? `Viewing ${userData.topFour.length} saved ${userData.topFour.length === 1 ? 'medley' : 'medleys'}:`
-                        : 'You have no saved medleys!'}
+            <Container className='bg-light pt-4'>
+                
+                <h2 className='text-center pt-4'>
+                   My Top Four
                 </h2>
-                <div>
+                <ImageList sx={{ pt: 4 }} cols={4} rowHeight={164}>
+
                     {userData.topFour.map((medley) => {
                         return (
-                            <Card key={medley._Id} border='dark'>
-                                {medley.image ? <Card.Img src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
-                                <Card.Body>
-                                    <Card.Title>{medley.artist}</Card.Title>
-                                    <p className='small'>Album: {medley.album_name}</p>
-                                   {allowDelete && (<Button onClick={() => handleOpen(medley)} className='btn-block btn-danger' >Change One of My Top Four Artist</Button>)} 
-
-                                   
-                                </Card.Body>
-                            </Card>
+                            <CardMedia sx={{pl:4, pr: 4, pb: 2, pt: 2 }} key={medley._Id} >
+                                {medley.image ? <CardMedia component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
+                                <CardContent>
+                                    <Card.Title>{medley.album_name}</Card.Title>
+                                    <p className='small'>{medley.artist}</p>
+                                    {allowDelete && (<Button type='button' className='btn btn-danger btn-sm' onClick={() => handleOpen(medley)}  >Update this Record</Button>)}
+                                </CardContent>
+                            </CardMedia>
 
                         );
                     })}
-                     <Modal
-                                        open={open}
-                                        onClose={handleClose}
-                                        aria-labelledby="modal-modal-title"
-                                        aria-describedby="modal-modal-description"
-                                    >
-                                        <Box sx={style}>
-                                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                                Update One of Your Top Four!
-                                            </Typography>
-                                            <Box>
-                                                {
-                                                    filtered(userData.medley, userData.topFour).map((topFourOption) => {
-                                                        return (
-                                                            <Box key={topFourOption._id}>
-                                                                
-                                                                <img src={topFourOption.image}></img>
-                                                                <br></br>
-                                                            <Button className='btn-block btn-danger' onClick={() => {handleClose(); handleUpdateTop(topFourOption, updateMedley)}}>Update with Selected Artist</Button>
-                                                            </Box>
-                                                        )
-                                                    })
-                                                }
-                                                < br ></br>
-                                                
-                                            </Box>
-                                        </Box>
-                                    </Modal>
-                </div>
+
+                    {/* modal to update Medley top four */}
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography className='text-center' id="modal-modal-title" variant="h6" component="h2">
+                                Update One of Your Top Four!
+                            </Typography>
+                            <Box>
+                                <ImageList sx={{ width: 500, height: 450 }}>
+                                    {
+                                        filtered(userData.medley, userData.topFour).map((topFourOption) => {
+                                            return (
+
+                                                <ImageListItem sx={{ pl:4, pr: 4, pb: 2, pt: 2 }} key={topFourOption._id}>
+
+                                                    <img src={topFourOption.image} alt="albumchoice"></img>
+                                                    <br></br>
+                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => {  handleUpdateTop(topFourOption, updateMedley); handleClose();}}>Update with Selected Artist</Button>
+                                                </ImageListItem>
+                                            )
+                                        })
+                                    }
+                                </ImageList>
+                                < br ></br>
+
+                            </Box>
+                        </Box>
+                    </Modal>
+                </ImageList>
             </Container>
         </>
     )

@@ -11,6 +11,12 @@ import Reaction from '../components/Reaction';
 import Auth from '../utils/auth';
 import { GET_USER, GET_ME } from '../utils/queries';
 
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+
+
+
 
 
 
@@ -21,6 +27,10 @@ const Profile = ({allowDelete}) => {
         variables: { username: username },
       });
 
+     
+
+      
+
       const userData = data?.me || data?.user || {};
       // navigate to personal profile page if username is yours
       if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
@@ -30,21 +40,30 @@ const Profile = ({allowDelete}) => {
       if (loading) {
         return <h2>LOADING...</h2>;
       }
+
+
+
+      
     return (
         <div>
-             <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+          
+          < div className="bg-dark text-light p-3 mb-5">
+            <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <Typography variant="h2" compent="h2"> Viewing {username ? `${userData.username}'s` : 'your'} Medley     </Typography>
+            <br></br>
              <Reaction allowDelete={allowDelete} userData={userData} />
-            Viewing {username ? `${userData.username}'s` : 'your'} profile.
-          </h2>
+
+             
+             
            
+             </Box>
+            </div>
             <br></br>
             <br></br>
             <br></br>
-            <h1>Top Four from My Medley</h1>
             <TopFour allowDelete={allowDelete} userData={userData} />
             <br></br>
             <br></br>
-            <h1> My Medley</h1>
             <Medley allowDelete={allowDelete} userData={userData}/>
         </div>
 
