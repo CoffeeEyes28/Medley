@@ -14,6 +14,7 @@ import CardContent from '@mui/material/CardContent';
 // import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 // import Link from '@mui/material/Link';
+import CardMedia from '@mui/material/CardMedia';
 
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -69,15 +70,17 @@ const Aside = () => {
                     </Link>
                     </Typography>
                     </Box>
+                    <ImageList sx={{ pt: 4 }} cols={2} rows={2} rowHeight={164}>
                     {users.topFour.map((topFour) => (
-                         <ImageList sx={{ pt: 4 }} cols={2} rows={2} rowHeight={164}>
-                        <Grid item key={users}>
+                         
+                        <CardMedia item key={users}>
 
                             <img src={topFour.image}></img>
                        
-                        </Grid>
-                        </ImageList>
+                        </CardMedia>
+                       
                     ))}
+                     </ImageList>
                     </CardContent> 
                     {/* <CardActions>
                         <Button size="small">Learn More</Button>
