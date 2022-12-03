@@ -48,12 +48,15 @@ const TopFour = ({ allowDelete, userData }) => {
     const [open, setOpen] = useState(false);
     const [updateMedley, setUpdateMedley] = useState(null);
     const handleOpen = (updateMedley) => {
+        console.log(updateMedley._id)
         setUpdateMedley(updateMedley);
         return setOpen(true);
     }
     const handleClose = () => {
 
-        window.location.reload();
+        setTimeout(function(){
+            window.location.reload();
+         }, 50);
 
         return setOpen(false)
 
@@ -82,6 +85,7 @@ const TopFour = ({ allowDelete, userData }) => {
     // }
 
     const handleUpdateTop = async (input, Id) => {
+       
         const recordToUpdate = Id;
         console.log(recordToUpdate)
         console.log(input)
@@ -160,7 +164,7 @@ const TopFour = ({ allowDelete, userData }) => {
 
                                                     <img src={topFourOption.image} alt="albumchoice"></img>
                                                     <br></br>
-                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => { handleClose(); handleUpdateTop(topFourOption, updateMedley) }}>Update with Selected Artist</Button>
+                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => {  handleUpdateTop(topFourOption, updateMedley); handleClose();}}>Update with Selected Artist</Button>
                                                 </ImageListItem>
                                             )
                                         })

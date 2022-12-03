@@ -12,7 +12,7 @@ import Auth from '../utils/auth';
 import { GET_USER, GET_ME } from '../utils/queries';
 
 
-import { Typography } from '@mui/material';
+
 
 
 
@@ -23,6 +23,10 @@ const Profile = ({allowDelete}) => {
         variables: { username: username },
       });
 
+     
+
+      
+
       const userData = data?.me || data?.user || {};
       // navigate to personal profile page if username is yours
       if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
@@ -32,11 +36,15 @@ const Profile = ({allowDelete}) => {
       if (loading) {
         return <h2>LOADING...</h2>;
       }
+
+
+
+      
     return (
         <div>
              <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-             <Reaction allowDelete={allowDelete} userData={userData} />
             Viewing {username ? `${userData.username}'s` : 'your'} profile.
+            <Reaction allowDelete={allowDelete} userData={userData} />
           </h2>
            
             <br></br>
