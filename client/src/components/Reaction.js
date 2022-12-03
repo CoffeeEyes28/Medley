@@ -26,7 +26,7 @@ const [removeReaction]= useMutation(REMOVE_REACTION);
 
 const [reactionCount, setReactionCount] = useState(userData.reactionCount)
 
-const [reactMatch, setReactMatch] = useState(false);
+
 
 const {loading, data} = useQuery(GET_ME);
 
@@ -48,7 +48,7 @@ try {
     await addReaction({
         variables: {userId: userId, username: username}
     })
-    setReactionCount(userData.reactionCount)
+return setReactionCount(userData.reactionCount)
 } catch (err){
     console.error(err);
 }
@@ -64,21 +64,58 @@ if(loading){
     <h2>Loading..</h2>
 }
 
+const remove = async (reactionId, userId) => {
+    console.log(reactionId, ' ', userId)
+    const token = Auth.loggedIn() ? Auth.getToken() : null 
+
+    if(!token){
+        return false; 
+    }
+
+    try {
+        await removeReaction({
+            variables: {reactionId: reactionId, userId: userId}
+            
+        })
+
+       return setReactionCount(userData.reactionCount)
+    } catch (err) {
+        
+    }
+
+
+
+
+}
+
 
 const checkUser = userData.reactions.map((id)=> id._id)
 const checkSelf  = selfData.reacted.map((id)=> id._id)
 
-const checkA = new Set(checkUser.map(({id}) => id));
 
-const result = checkSelf.map(({ id }) => ({id, isavailable: checkA.has(id)}))
 
-const reacted = result.map((answer) => answer.isavailable)
+
+
+
+
+
+const checkA = new Set(userData.reactions.map(({_id}) => _id));
+
+
+
+const result = selfData.reacted.map(({_id}) => ({_id, isavailable: checkA.has(_id)}))
+
+const reacted = result.filter((answer) => answer.isavailable)
+
+const match = reacted.map((id) => id.isavailable);
+
+const reactId = reacted.map((id) => id._id)
 
 
     return (
         <div>
-            { reacted[0]
-     ?   <IconButton ><FavoriteIcon/></IconButton> : <IconButton onClick={() => reaction(userData._id, selfData.username)}><FavoriteBorderIcon /></IconButton>}
+            { match[0] 
+     ?   <IconButton onClick={() => remove(reactId[0], userData._id)} ><FavoriteIcon/></IconButton> : <IconButton onClick={() => reaction(userData._id, selfData.username)}><FavoriteBorderIcon /></IconButton>}
 
 <br></br>
 <div>
