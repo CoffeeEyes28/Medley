@@ -1,5 +1,5 @@
 import React from "react";
-
+// import { Navigate } from "react-router-dom";
 import { useQuery } from '@apollo/client';
 import { GET_All_USERS } from '../utils/queries';
 
@@ -8,7 +8,22 @@ import { GET_All_USERS } from '../utils/queries';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-  
+import Card from '@mui/material/Card';
+// import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+// import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+// import Link from '@mui/material/Link';
+
+import { Link } from 'react-router-dom';
+
+// const Item = styled(Paper)(({ theme }) => ({
+//     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+//     ...theme.typography.body2,
+//     padding: theme.spacing(2),
+//     textAlign: 'center',
+//     color: theme.palette.text.secondary,
+// }));
 
 const Aside = () => {
 
@@ -17,71 +32,56 @@ const Aside = () => {
     const userData = data?.users || [];
     console.log(userData)
 
-  
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Grid container 
-            direction ="column" 
-            justifyContent="center" 
-            alignItems="flex-end" 
-            marginRight="10px"
-            // marginBottom={1} 
-            // paddingBottom={10} 
-            // paddingLeft={20} 
-            rowSpacing={1} 
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Box 
+        component='span'
+        sx={{ 
+        display: 'inline-block', 
+        // mx:'2px', 
+        // transform: 'scale(0.8)', 
+        width: '100%'
         
-                {userData.map((users) => (
+        }}>
 
-                    <div key={users}>
-                        <h1>{users.username}</h1>
-                        {users.topFour.map((topFour) => ( 
-                    
-                    <div>
-                        <img src= {topFour.image}></img>
-                    </div> 
-                    
+            {userData.map((users) => (
+                <Card variant='outlined'>
+                <Grid 
+                container spacing={1} 
+                columnSpacing={{ xs: 1, sm: 2, md: 3 }} 
+                >
+                    <CardContent>
+                        <Box>
+                        <Typography
+                    variant='h4'
+                    display= 'flex'
+                    justifyContent= 'center'>
+                    <Link
+                    to={users.username}
+                    color='red'
+                    underline='hover'
+                    >
+                    {users.username} 
+                    </Link>
+                    </Typography>
+                    </Box>
+                    {users.topFour.map((topFour) => (
+
+                        <Grid item key={users}>
+
+                            <img src={topFour.image}></img>
+                       
+                        </Grid>
+                       
                     ))}
-
-                    <br></br>
-                </div>
+                    </CardContent> 
+                    {/* <CardActions>
+                        <Button size="small">Learn More</Button>
+                    </CardActions> */}
+                </Grid>
+                </Card>
             ))}
-            </Grid>
         </Box>
-    )
+    );
 }
-
 export default Aside;
-
-
-// const Aside = () => {
-
-//     const { loading, data } = useQuery(GET_All_USERS)
-
-//     const userData = data?.users || [];
-//     console.log(userData)
-
-  
-
-//     return (
-//         <div>
-//             {userData.map((users) => (
-
-//                 <div key={users}>
-//                     <h1>{users.username}</h1>
-//                     {users.topFour.map((topFour) => ( 
-                    
-//                     <div>
-//                         <img src= {topFour.image}></img>
-//                     </div> 
-                    
-//                     ))}
-//                     <br></br>
-//                 </div>
-//             ))}
-//         </div>
-//     )
-// }
-
-// export default Aside;
