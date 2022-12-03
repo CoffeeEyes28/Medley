@@ -6,11 +6,15 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import CopyrightIcon from '@mui/icons-material/Copyright';
 // import LastFM from '../Assets/Images/lastFMlogo.png';
 
+
 const Footer = () => {
+
+ 
+
   return (
 
-    <footer class="small bg-light ">
-      <div class="container py-3 py-sm-4">
+    <footer class="small bg-light fixed-bottom ">
+      <div class="  ">
         <div class="row justify-content-md-center py-2">
           <div class="col-md-auto">
            <a href="https://github.com/CoffeeEyes28/Medley"><GitHubIcon /></a>
