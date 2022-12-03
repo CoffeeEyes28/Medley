@@ -60,9 +60,9 @@ const Searchbar = () => {
       <Box
         sx={{
           pt: 2,
-          ml: 4,
-          width: 406,
-          height: 200,
+          ml: '6%',
+          minWidth: '20%',
+          minHeight: 200,
           backgroundColor: colorGrey,
           opacity: [0.8],
           borderRadius: 2,
