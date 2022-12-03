@@ -24,7 +24,7 @@ const Reaction = ({allowDelete, userData}) => {
 const [addReaction]= useMutation(ADD_REACTION);
 const [removeReaction]= useMutation(REMOVE_REACTION);
 
-const [reactionCount, setReactionCount] = useState(userData.reactionCount)
+const [reactionCount, setReactionCount] = useState('')
 
 
 
@@ -48,7 +48,7 @@ try {
     await addReaction({
         variables: {userId: userId, username: username}
     })
-return setReactionCount(userData.reactionCount)
+
 } catch (err){
     console.error(err);
 }
@@ -78,7 +78,7 @@ const remove = async (reactionId, userId) => {
             
         })
 
-       return setReactionCount(userData.reactionCount)
+       
     } catch (err) {
         
     }
@@ -115,11 +115,11 @@ const reactId = reacted.map((id) => id._id)
     return (
         <div>
             { match[0] 
-     ?   <IconButton onClick={() => remove(reactId[0], userData._id)} ><FavoriteIcon/></IconButton> : <IconButton onClick={() => reaction(userData._id, selfData.username)}><FavoriteBorderIcon /></IconButton>}
+     ?   <IconButton onClick={() => remove(reactId[0], userData._id)} ><FavoriteIcon sx={{color: 'red'}}/></IconButton> : !allowDelete && <IconButton onClick={() => reaction(userData._id, selfData.username)}><FavoriteBorderIcon /></IconButton>}
 
 <br></br>
 <div>
-    <h2 style={{ fontSize: '50'}}>{reactionCount}</h2>
+    <h2 style={{ fontSize: '50'}}>{userData.reactionCount}</h2>
     <br></br>
 
 </div>
