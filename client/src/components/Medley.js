@@ -133,9 +133,7 @@ const Medley = ({ allowDelete, userData }) => {
               ? `Records: ${userData.medley.length} in ${userData.medley.length === 1 ? 'Medley' : 'Medleys'}`
               : 'You have no saved Medleys!'}
           </Typography>
-        </Box>
-
-        
+        </Box>        
           <ImageList sx={{ pt: 4 }} cols={3} rowHeight={164}>
             {userData.medley.map((medley) => {
               return (
