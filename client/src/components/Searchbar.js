@@ -1,16 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import { useQuery, useMutation } from '@apollo/client';
-// import { SAVE_RECORD } from '../utils/mutations';
 import Results from "./Results";
 import Box from "@mui/material/Box";
 import Container from '@mui/material/Container';
-// import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { grey } from "@mui/material/colors";
 import search from "../utils/API";
-// import Auth from '../utils/auth';
+import Grid from '@mui/material/Grid';
 
 const Searchbar = () => {
   const colorGrey = grey[100];
@@ -47,20 +44,20 @@ const Searchbar = () => {
     }
   };
 
-
-
   return (
     <Box sx={{
+      pt: 10,
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',
-      justifyContent: 'center',
       alignItems: 'baseline',
     }}>
+      <Grid sx={{
+      ml: 10,
+      }}>
       <Box
         sx={{
           pt: 2,
-          ml: '6%',
           minWidth: 380,
           minHeight: 200,
           backgroundColor: colorGrey,
@@ -117,6 +114,7 @@ const Searchbar = () => {
 
 
       </Box>
+      </Grid>
       <Results props={results} />
     </Box>
   );
