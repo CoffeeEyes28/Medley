@@ -164,7 +164,7 @@ const TopFour = ({ allowDelete, userData }) => {
 
                                                     <img src={topFourOption.image} alt="albumchoice"></img>
                                                     <br></br>
-                                                    <Button  onClick={() => {  handleUpdateTop(topFourOption, updateMedley); handleClose();}}>Update with Selected Artist</Button>
+                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => {  handleUpdateTop(topFourOption, updateMedley); handleClose();}}>Update with Selected Artist</Button>
                                                 </ImageListItem>
                                             )
                                         })
