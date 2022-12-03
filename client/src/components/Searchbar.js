@@ -1,35 +1,21 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useQuery, useMutation } from '@apollo/client';
-import { SAVE_RECORD } from '../utils/mutations';
-
-
-
+// import { useQuery, useMutation } from '@apollo/client';
+// import { SAVE_RECORD } from '../utils/mutations';
 import Results from "./Results";
-
 import Box from "@mui/material/Box";
 import Container from '@mui/material/Container';
-import FormControl from "@mui/material/FormControl";
+// import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { amber } from "@mui/material/colors";
-
+import { grey } from "@mui/material/colors";
 import search from "../utils/API";
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 
 const Searchbar = () => {
-  const color = amber[100];
-
+  const colorGrey = grey[100];
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
-
-
-
-
-
-
-
-
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +39,7 @@ const Searchbar = () => {
         image: artist.image[3]["#text"],
       }));
 
-      
+
       setResults(artistData);
       setSearchInput("");
     } catch (err) {
@@ -65,70 +51,73 @@ const Searchbar = () => {
 
   return (
     <Box sx={{
-      
       display: 'flex',
       flexDirection: 'column',
       flexWrap: 'nowrap',
       justifyContent: 'center',
       alignItems: 'baseline',
     }}>
-    <Box
-      sx={{
-        m:4,
-        width: 400,
-        height: 180,
-        backgroundColor: color,
-        opacity: [0.9],
-        borderRadius: 10,
-        
-      }}
-    >
       <Box
-        component="form"
         sx={{
-        
-          
+          pt: 2,
+          ml: 4,
+          width: 406,
+          height: 200,
+          backgroundColor: colorGrey,
+          opacity: [0.8],
+          borderRadius: 2,
         }}
       >
-       
-        <Container sx={{
-        display: 'flex', 
-        flexDirection: 'column', 
-        flexWrap: 'wrap', 
-        alignItems: 'center',
-        justifyContent: 'center', 
-       
-         }}>
-        
-        <h2>Search an Artist </h2>
-       
-       
-        <TextField
-      
-          id="outlined-basic"
-          label="Artist Name"
-          variant="outlined"
-          onChange={(e) => setSearchInput(e.target.value)}
-          value={searchInput}
-        />
-       
-        <br></br>
-        <Button
-          sx={{width: '10ch'}}
-          onClick={handleFormSubmit}
-          size="small"
-          variant="contained"
-          type="submit"
-        >
-          Submit
-        </Button>
-        
-        </Container>
-      </Box>
+        <Box
+          component="form"
+          sx={{
+            
 
-      
-    </Box>
-    <Results props={results}  />
+          }}
+        >
+
+          <Container sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+          }}>
+
+            <h2>Search an Artist </h2>
+
+
+            <TextField
+
+              id="outlined-basic"
+              label="Artist Name"
+              variant="outlined"
+              onChange={(e) => setSearchInput(e.target.value)}
+              value={searchInput}
+            />
+
+            <br></br>
+            <Button
+              sx={{ 
+              width: '10ch'
+             }}
+              onClick={handleFormSubmit}
+              size="small"
+              variant="contained"
+              type="submit"
+              
+
+            >
+              Submit
+            </Button>
+
+          </Container>
+        </Box>
+
+
+      </Box>
+      <Results props={results} />
     </Box>
   );
 };
