@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import {useMutation, useQuery } from '@apollo/client';
 import { GET_ME, GET_USER } from '../utils/queries';
@@ -19,18 +19,28 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const Reaction = ({allowDelete, userData}) => {
   
+    const {loading, data} = useQuery(GET_ME);
+
+
+const selfData = data?.me || {};
 
 
 const [addReaction]= useMutation(ADD_REACTION);
 const [removeReaction]= useMutation(REMOVE_REACTION);
 
-const [reactionCount, setReactionCount] = useState('')
+const [reactionCount, setReactionCount] = useState(userData.reactionCount)
+
+const [buttonOn, setButtonOn] = useState(false)
+
+const [userInfo, setUserInfo] = useState(userData)
 
 
 
-const {loading, data} = useQuery(GET_ME);
 
-const selfData = data?.me || {};
+
+
+
+console.log(userInfo)
 
 
 
@@ -48,6 +58,11 @@ try {
     await addReaction({
         variables: {userId: userId, username: username}
     })
+
+     setReactionCount(userData.reactionCount + 1)
+    setButtonOn(true)
+    
+
 
 } catch (err){
     console.error(err);
@@ -78,7 +93,10 @@ const remove = async (reactionId, userId) => {
             
         })
 
-       
+       setReactionCount(userData.reactionCount - 1 )
+       setButtonOn(false)
+      
+     
     } catch (err) {
         
     }
@@ -99,7 +117,7 @@ const checkSelf  = selfData.reacted.map((id)=> id._id)
 
 
 
-const checkA = new Set(userData.reactions.map(({_id}) => _id));
+const checkA = new Set(userInfo.reactions.map(({_id}) => _id));
 
 
 
@@ -112,14 +130,15 @@ const match = reacted.map((id) => id.isavailable);
 const reactId = reacted.map((id) => id._id)
 
 
+console.log(match[0])
     return (
         <div>
-            { match[0] 
+            { buttonOn || match[0] 
      ?   <IconButton onClick={() => remove(reactId[0], userData._id)} ><FavoriteIcon sx={{color: 'red'}}/></IconButton> : !allowDelete && <IconButton onClick={() => reaction(userData._id, selfData.username)}><FavoriteBorderIcon /></IconButton>}
 
 <br></br>
 <div>
-    <h2 style={{ fontSize: '50'}}>{userData.reactionCount}</h2>
+    <h2 style={{ fontSize: '50'}}>{reactionCount}</h2>
     <br></br>
 
 </div>
