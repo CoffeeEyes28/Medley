@@ -12,6 +12,8 @@ import Auth from '../utils/auth';
 import { GET_USER, GET_ME } from '../utils/queries';
 
 
+import { Typography } from '@mui/material';
+
 
 
 const Profile = ({allowDelete}) => {
@@ -40,11 +42,9 @@ const Profile = ({allowDelete}) => {
             <br></br>
             <br></br>
             <br></br>
-            <h1>Top Four from My Medley</h1>
             <TopFour allowDelete={allowDelete} userData={userData} />
             <br></br>
             <br></br>
-            <h1> My Medley</h1>
             <Medley allowDelete={allowDelete} userData={userData}/>
         </div>
 
