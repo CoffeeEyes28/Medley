@@ -33,9 +33,10 @@ const Profile = ({allowDelete}) => {
     return (
         <div>
              <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+             <Reaction allowDelete={allowDelete} userData={userData} />
             Viewing {username ? `${userData.username}'s` : 'your'} profile.
           </h2>
-            <Reaction allowDelete={allowDelete} userData={userData} />
+           
             <br></br>
             <br></br>
             <br></br>

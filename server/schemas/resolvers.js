@@ -127,7 +127,7 @@ const resolvers = {
 
                 await User.findOneAndUpdate(
                     { _id: userId },
-                    {$addToSet: { reactions: reaction._id}}
+                    {$addToSet: { reactions: reaction._id }}
                 );
                 
               
