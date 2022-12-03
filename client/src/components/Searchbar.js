@@ -61,7 +61,7 @@ const Searchbar = () => {
         sx={{
           pt: 2,
           ml: '6%',
-          minWidth: '20%',
+          minWidth: 380,
           minHeight: 200,
           backgroundColor: colorGrey,
           opacity: [0.8],
