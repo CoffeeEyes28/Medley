@@ -4,13 +4,13 @@ import { useQuery, useMutation } from '@apollo/client';
 import { SAVE_RECORD } from '../utils/mutations';
 import { GET_ME } from '../utils/queries';
 import Icon from '@mui/material/Icon'
-import Button from '@mui/material/Button';
+import { Grid, Typography, Button } from '@mui/material';
 import Box from '@mui/material/Box'
 import { grey } from "@mui/material/colors";
 import Auth from '../utils/auth';
 
 const Results = (props) => {
-  const colorGrey = grey[100];
+  const lightGrey = grey[300];
   const [albumName, setAlbumName] = useState('');
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || [];
@@ -37,52 +37,53 @@ const Results = (props) => {
   };
 
   return (
-    <Box>
+    <Grid container direction="row" justifyContent="space-evenly" alignItems="flex-start">
 
       {recordData.map((artist) => (
-      !artist.image || !artist.artist || !artist.album_name ? null : 
-        <Box sx={{
-          backgroundColor: colorGrey,
-          opacity: [0.9],
-          display: 'flex',
-          flexDirection: 'column',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          mt: 2,
-          pt: 2,
-          maxWidth:380,
-          alignItems: 'center',
-          borderRadius: 2,
+        !artist.image || !artist.artist || !artist.album_name ? null :
+          <Box sx={{
+            backgroundColor: lightGrey,
+            opacity: [0.85],
+            justifyContent: 'center',
+            my: 2,
+            py: 2,
+            width: 350,
+            height: 540,
+            alignItems: 'center',
+            borderRadius: 2,
+          }}>
+            <Box key={artist.album_name} sx={{ textAlign: 'center' }}>
 
-        }}>
-          <br></br>
-          <br></br>
-          <Box key={artist.album_name} sx={{ textAlign: 'center' }}>
+              <img src={artist.image} alt={artist.album_name} />
+              <Typography variant="h5" color='black'
+                sx={{
+                  mt: 2,
+                  mx:2
+                }}>{artist.album_name}</Typography>
+              <Typography variant="body1" color='black'
+                sx={{
+                  mb:2,
+                  mx: 2
+                }}>{artist.artist}</Typography>
 
-            <img src={artist.image} alt={artist.album_name} /> 
+              {Auth.loggedIn() && (
 
-            <h1>{artist.album_name}</h1>
-            <p>{artist.artist}</p>
+                <Button
+                  disabled={userData.medley.some(record => artist.album_name === record.album_name)}
+                  onClick={() => addToMedley(artist.album_name)}>
+                  <Icon>
+                    {userData.medley.some(record => artist.album_name === record.album_name) ? 'check_circle' : 'add_circle'}</Icon>
+                </Button>
+              )}
 
-
-            {Auth.loggedIn() && (
-
-              <Button
-                disabled={userData.medley.some(record => artist.album_name === record.album_name)}
-                onClick={() => addToMedley(artist.album_name)}>
-                <Icon>
-                  {userData.medley.some(record => artist.album_name === record.album_name) ? 'check_circle' : 'add_circle'}</Icon>
-              </Button>
-            )}
-
+              <br></br>
+            </Box>
             <br></br>
           </Box>
-          <br></br>
-        </Box>
       ))}
       <br></br>
 
-    </Box>
+    </Grid>
 
 
   )

@@ -1,14 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import { GET_All_USERS } from "../utils/queries";
-
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import CardMedia from "@mui/material/CardMedia";
-import ImageList from "@mui/material/ImageList";
+import { Box, Grid, Container } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
@@ -17,91 +10,91 @@ import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 
 const Aside = () => {
-  const colorGrey = grey[50];
+
+  const lightGrey = grey[400];
+  const darkGrey = grey[800];
   const { loading, data } = useQuery(GET_All_USERS);
 
   const userData = data?.users || [];
 
   return (
-    <Box
-      component="span"
-      sx={{
-        display: "inline-block",
-        width: "100%",
-      }}
-    >
+    <Container sx={{
+      py: 1,
+      backgroundColor: darkGrey,
+      opacity: [0.90],
+      width: '90%',
+      justifyContent: 'center',
+      textAlign: 'center',
+      borderRadius: 10
+    }}>
       {userData.map((users) =>
         users.topFour.length < 4 ? null : (
-          <Card
+          <Container
             sx={{
-              mt: 10,
-              ml: 10,
-            }}
-            variant="outlined"
-          >
-            <Grid
+              my: 4,
+              py: 4,
+              border:'1px solid white',
+              borderRadius:6,
+
+            }}>
+            <Link className="aside-medley-username" to={users.username} underline="none">
+              {users.username}
+            </Link>
+            <Container
               sx={{
-                pl: 10,
-              }}
-            >
-              <CardContent>
-                <Box
-                  sx={{
-                    pt: 2,
-                    width: 1000,
+                py: 1
+              }}>
+              <Container>
+                {users.reactionCount > 0 ? <Badge
+                  aria-label={`Reactions: ${users.reactionCount}`}
+                  badgeContent={users.reactionCount}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
                   }}
+                  color="primary"
                 >
-                  <Typography
-                    variant="h4"
-                    display="flex"
-                    justifyContent="center"
-                  >
-                    <Link to={users.username} color="red" underline="hover">
-                      {users.username}
-                    </Link>
-                  </Typography>
-                  {users.reactionCount >0 ? <Badge
-                    aria-label={`Reactions: ${users.reactionCount}`}
-                    badgeContent={users.reactionCount}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    color="primary"
-                  >
-                    <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
-                  </Badge> : <Badge
-                    aria-label={`Reactions: ${users.reactionCount}`}
-                    badgeContent={users.reactionCount}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    color="primary"
-                  >
-                    <FavoriteBorderIcon sx={{ fontSize: 30 }} />
-                  </Badge> }
-                  
-                </Box>
-                <ImageList
-                  sx={{
-                    width: 1200,
+                  <FavoriteIcon sx={{ color: "red", fontSize: 30 }} />
+                </Badge> : <Badge
+                  aria-label={`Reactions: ${users.reactionCount}`}
+                  badgeContent={users.reactionCount}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
                   }}
-                  cols={2}
-                  rows={2}
+                  color="primary"
+                >
+                  <FavoriteBorderIcon sx={{ fontSize: 30 }} />
+                </Badge>}
+              </Container>
+              <Container
+                sx={{
+                  my:2,
+                  py: 4,
+                  borderRadius: 6,
+                  backgroundColor: lightGrey
+                }}>
+                <Grid container direction="row" justifyContent="space-between"
+                  sx={{
+                    backgroundColor: lightGrey,
+                    borderRadius: 6,
+                  }}
                 >
                   {users.topFour.map((topFour) => (
-                    <CardMedia sx={{}} item key={users}>
+                    <Box key={users}
+                    sx={{
+                      m:2,
+                    }}>
                       <img src={topFour.image} alt={topFour.album_name}></img>
-                    </CardMedia>
+                    </Box>
                   ))}
-                </ImageList>
-              </CardContent>
-            </Grid>
-          </Card>
+                </Grid>
+              </Container>
+            </Container>
+          </Container>
         )
       )}
-    </Box>
+    </Container>
   );
 };
 
