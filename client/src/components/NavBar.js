@@ -33,6 +33,9 @@ const AppNavbar = () => {
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login | Sign Up</Nav.Link>
               )}
+                <Nav.Link href='https://ko-fi.com/medley96202'>
+                Donate to Medley
+                </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
