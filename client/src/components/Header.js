@@ -1,4 +1,3 @@
-import { Divider } from '@mui/material';
 import React from 'react'
 import banner from "../Assets/Images/banner.jpg";
 
@@ -10,7 +9,7 @@ const Header = () => {
       backgroundRepeat: 'no-repeat',
       backgroundSize: '55%',
       height: '25vh',
-      backgroundColor: 'white',
+      backgroundColor: '#212529',
     }}>
     </header>
   )
