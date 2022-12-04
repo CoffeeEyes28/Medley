@@ -1,7 +1,8 @@
 .box{
     background: rgba(40, 40, 40, 0.8);
     border-radius: 30px;
-    max-width: 1050px;
+    max-width: 900px;
+   
     
 }
 
@@ -14,4 +15,17 @@
     background-color: rgba(246, 246, 246, 0.3);
     border-radius: 15px;
     margin: 5px;
+    /* width: 100% */
+    height: 95%;
 }
+
+.image {
+    /* border-radius: 15px; */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.del-btn {
+    float: right;
+}
+
