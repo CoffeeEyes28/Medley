@@ -48,10 +48,9 @@ const Profile = ({allowDelete}) => {
       
     return (
         <div>
-          
-          < div className="bg-dark text-light p-3 mb-5">
+          < div className=" text-light d-flex flex-column flex-wrap justify-content-center align-content-center p-4 mb-5" style={{backgroundColor: 'rgba( 40, 40, 40, 0.8)'}}>
             <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-            <Typography variant="h2" compent="h2"> Viewing {username ? `${userData.username}'s` : 'your'} Medley     </Typography>
+            <Typography variant="h2" compent="h2"> {username ? `${userData.username}'s` : 'Your'} Medley     </Typography>
             <br></br>
             {Auth.loggedIn() ? <Reaction allowDelete={allowDelete} userData={userData} /> : userData.reactionCount >0 ? <Badge
                     aria-label={`Reactions: ${userData.reactionCount}`}

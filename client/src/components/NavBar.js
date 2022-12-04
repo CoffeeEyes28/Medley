@@ -22,17 +22,30 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to='/'>
               Home
               </Nav.Link>
+              <Nav.Link as={Link} to='/about'>
+              About
+              </Nav.Link>
+             
               {/* if user is logged in show saved Medley and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/me'>
+                  <Nav.Link as={Link} to='/me' onClick={() => this.forceUpdate()}>
                     My Medley
                   </Nav.Link>
+                  <Nav.Link href='https://ko-fi.com/medley96202' target={'_blank'}>
+                Donate to Medley
+                </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
-              ) : (
+              ) : ( <>
+               <Nav.Link href='https://ko-fi.com/medley96202' target={'_blank'}>
+                Donate to Medley
+                </Nav.Link>
                 <Nav.Link onClick={() => setShowModal(true)}>Login | Sign Up</Nav.Link>
+
+                </>
               )}
+                 
             </Nav>
           </Navbar.Collapse>
         </Container>
