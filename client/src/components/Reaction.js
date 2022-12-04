@@ -15,9 +15,15 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Badge from "@mui/material/Badge";
 
 const Reaction = ({ allowDelete, userData }) => {
+
+
+
+ 
   const { loading, data } = useQuery(GET_ME);
 
   const selfData = data?.me || {};
+  
+
 
   const [addReaction] = useMutation(ADD_REACTION);
   const [removeReaction] = useMutation(REMOVE_REACTION);
@@ -26,7 +32,9 @@ const Reaction = ({ allowDelete, userData }) => {
 
   const [buttonOn, setButtonOn] = useState(false);
 
-  const [selfInfo, setSelfInfo] = useState(selfData);
+ 
+
+  
 
   if (loading) {
     return;
@@ -75,6 +83,8 @@ const Reaction = ({ allowDelete, userData }) => {
 
   // const checkUser = userData.reactions.map((id)=> id._id)
   // const checkSelf  = selfData.reacted.map((id)=> id._id)
+
+
 
   const checkA = new Set(userData.reactions.map(({ _id }) => _id));
 
