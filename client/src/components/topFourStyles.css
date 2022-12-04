@@ -1,0 +1,16 @@
+.boxFour{
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 30px;
+    max-width: 1000px;
+}
+
+.record {
+    color: white;
+}
+
+.mediaCard {
+    background-color: rgba(246, 246, 246, 0.5);
+    border-radius: 10px;
+    margin: 5px;
+}
+

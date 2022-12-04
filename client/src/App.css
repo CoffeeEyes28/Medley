@@ -1,3 +1,10 @@
+.aside-medley-username {
+  text-decoration-line: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .App {
   text-align: center;
 }
