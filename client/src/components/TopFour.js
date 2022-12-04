@@ -131,10 +131,12 @@ const TopFour = ({ allowDelete, userData }) => {
                             <CardMedia className='mediaCard' sx={{ }} key={medley._Id} >
                                 {medley.image ? <CardMedia className='image2' component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
                                 <CardContent>
-                                    <Typography>{medley.album_name}</Typography>
-                                    <Typography className='pb-3'>{medley.artist}</Typography>
+                                    <Typography className="fw-bold"
+                                    variant="string" 
+                                    display="block" >{medley.album_name}</Typography>
+                                    <Typography variant="body2"    className='pb-3'>{medley.artist}</Typography>
                                     {/* create a container, make a row */}
-                                    {allowDelete && (<Button type='button' className='btn btn-danger btn-sm' as="input" value='Update this Record' onClick={() => handleOpen(medley)} />)}
+                                    {allowDelete && (<Button type='button' className='btn btn-danger btn-sm update-btn' as="input" value='Update this Record' onClick={() => handleOpen(medley)} />)}
                                 </CardContent>
                             </CardMedia>
 
@@ -162,7 +164,7 @@ const TopFour = ({ allowDelete, userData }) => {
 
                                                     <img src={topFourOption.image} alt="albumchoice"></img>
                                                     <br></br>
-                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => { handleClose(); handleUpdateTop(topFourOption, updateMedley) }}>Update with Selected Artist</Button>
+                                                    <Button type='button' className='update-btn btn btn-danger btn-sm' onClick={() => { handleClose(); handleUpdateTop(topFourOption, updateMedley) }}>Update with Selected Artist</Button>
                                                 </ImageListItem>
                                             )
                                         })
