@@ -23,7 +23,7 @@ const Aside = () => {
     const { loading, data } = useQuery(GET_All_USERS)
 
     const userData = data?.users || [];
-    console.log(userData)
+    
 
 
     return (
