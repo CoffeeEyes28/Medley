@@ -13,6 +13,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { CardContent, CardMedia } from '@mui/material';
+import './topFourStyles.css';
 
 
 
@@ -122,20 +123,21 @@ const TopFour = ({ allowDelete, userData }) => {
             <h1>Viewing your Medleys!</h1>
           </Container>
         </Jumbotron> */}
-            <Container className='bg-light pt-4'>
+            <Container className='boxFour  p-4 '>
                 
-                <h2 className='text-center pt-4'>
+                <h2 className='  text-center text-white pt-4 pb-4'>
                    My Top Four
                 </h2>
-                <ImageList sx={{ pt: 4 }} cols={4} rowHeight={164}>
+                <ImageList className='record border border-light rounded '  sx={{ p:2 }} cols={4} rowHeight={164}>
 
                     {userData.topFour.map((medley) => {
                         return (
-                            <CardMedia sx={{pl:4, pr: 4, pb: 2, pt: 2 }} key={medley._Id} >
+                            <CardMedia className='mediaCard' sx={{pl:4, pr: 4,  pt: 2 }} key={medley._Id} >
                                 {medley.image ? <CardMedia component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
                                 <CardContent>
                                     <Card.Title>{medley.album_name}</Card.Title>
-                                    <p className='small'>{medley.artist}</p>
+                                    <Typography className='pb-3'>{medley.artist}</Typography>
+                                    {/* create a container, make a row */}
                                     {allowDelete && (<Button type='button' className='btn btn-danger btn-sm' onClick={() => handleOpen(medley)}  >Update this Record</Button>)}
                                 </CardContent>
                             </CardMedia>

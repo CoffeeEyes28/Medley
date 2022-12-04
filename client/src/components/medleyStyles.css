@@ -1,0 +1,17 @@
+.box{
+    background: rgba(40, 40, 40, 0.8);
+    border-radius: 30px;
+    max-width: 1050px;
+    
+}
+
+.medley {
+    color: white;
+}
+
+.mediaCard1 {
+    
+    background-color: rgba(246, 246, 246, 0.3);
+    border-radius: 15px;
+    margin: 5px;
+}

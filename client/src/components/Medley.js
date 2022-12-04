@@ -27,6 +27,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Delete from '@mui/icons-material/Delete';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import './medleyStyles.css';
 
 
 
@@ -107,56 +108,55 @@ const Medley = ({ allowDelete, userData }) => {
   }
 
   return (
-    <React.Fragment>
+    // <React.Fragment>
 
-      <CssBaseline />
-      <Box sx={{
-        pt: 9,
-        pb: 9,
-      }}>
-        <Container maxWidth="lg">
-          <Grid sx={{
-            bgcolor: 'background.paper',
+    //   <CssBaseline />
+    // <Box sx={{
+    //   pt: 9,
+    //   pb: 9,
+    // }}>
+    <Container className=' border border-light box pt-4 pb-4'>
+      {/* <Grid className='box' sx={{
             pt: 3,
             pl: 3,
             pr: 3,
             pb: 3,
-          }} container spacing={4}>
-            <Box>
-              <Typography component="h1"
-                variant="h4"
-                align="end"
-                color="text.primary"
-                gutterBottom>
+          }} container spacing={4}> */}
+      {/* <Box> */}
+      <Typography component="h1"
+        variant="h4"
+        align="start"
+        color="white"
+        gutterBottom>
 
 
-                Records:<span style={{ color: 'orange' }}> {userData.medley.length}
-                </span>
+        Records:<span style={{ color: 'orange' }}> {userData.medley.length}
+        </span>
 
-              </Typography>
-            </Box>
-            <ImageList sx={{ pt: 4 }} cols={3} rowHeight={164}>
-              {userData.medley.map((medley) => {
-                return (
-                  <CardMedia sx={{ pt: 2 , pb: 2, pr: 2, pl: 2}} key={medley._Id} border='dark'>
-                    {medley.image ? <CardMedia component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h3">{medley.album_name}</Typography>
-                      <Typography className='small'>{medley.artist}</Typography>
-                      {allowDelete && !userData.topFour.some((record => record.album_name === medley.album_name)) && (<IconButton aria-label="delete" variant="contained" sx={{ color: 'red' }} onClick={() => handleRemoveRecord(medley._id)}>
-                        <RemoveCircleIcon />
-                      </IconButton>)}
-                      {allowDelete && userData.topFour.length < 5 && (<Button variant="contained" size="small" hidden={userData.topFour.length >= 4 || userData.topFour.some((record => record.album_name === medley.album_name))} onClick={() => handleSaveTop(medley)}>
-                        Save to topFour!
-                      </Button>)}
+      </Typography>
+      {/* </Box> */}
+      <ImageList className='medley' sx={{ pt: 4 }} cols={4} rowHeight={164}>
+        {userData.medley.map((medley) => {
+          return (
+            <CardMedia className='mediaCard1 border border-light' sx={{ pt: 2, pr: 2, pl: 2 }} key={medley._Id} border='dark'>
+              {medley.image ? <CardMedia component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h3">{medley.album_name}</Typography>
+                <Typography >{medley.artist}</Typography>
+                {allowDelete && !userData.topFour.some((record => record.album_name === medley.album_name)) && (<IconButton aria-label="delete" variant="contained" sx={{ color: 'red' }} onClick={() => handleRemoveRecord(medley._id)}>
+                  <RemoveCircleIcon />
+                </IconButton>)}
+                {allowDelete && userData.topFour.length < 5 && (<Button variant="contained" size="small" hidden={userData.topFour.length >= 4 || userData.topFour.some((record => record.album_name === medley.album_name))} onClick={() => handleSaveTop(medley)}>
+                  Save to topFour!
+                </Button>)}
 
-                    </CardContent>
-                  </CardMedia>
-                );
-              })}
-            </ImageList>
-          </Grid>
-          {/* {!userParam && (
+              </CardContent>
+            </CardMedia>
+          );
+        })}
+      </ImageList>
+      {/* </Grid> */}
+      {/* {!userParam && (
             <div className="col-12 col-md-10 mb-3 p-3"
               style={{ border: '1px dotted #1a1a1a' }}>
               <Stack direction="row" spacing={2}>
@@ -177,9 +177,9 @@ const Medley = ({ allowDelete, userData }) => {
           )} */}
 
 
-        </Container >
-      </Box>
-    </React.Fragment >
+    </Container >
+    // </Box>
+    // </React.Fragment >
 
   )
 }
