@@ -11,8 +11,14 @@ import Reaction from '../components/Reaction';
 import Auth from '../utils/auth';
 import { GET_USER, GET_ME } from '../utils/queries';
 
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import Badge from "@mui/material/Badge";
 
-import { Typography } from '@mui/material';
+
 
 
 
@@ -23,22 +29,58 @@ const Profile = ({allowDelete}) => {
         variables: { username: username },
       });
 
+     
+
+      
+
       const userData = data?.me || data?.user || {};
       // navigate to personal profile page if username is yours
       if (Auth.loggedIn() && Auth.getProfile().data.username === username) {
         return <Navigate to="/me" />;
-      }
+      } 
 
       if (loading) {
         return <h2>LOADING...</h2>;
       }
+
+
+
+      
     return (
         <div>
-             <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-             <Reaction allowDelete={allowDelete} userData={userData} />
-            Viewing {username ? `${userData.username}'s` : 'your'} profile.
-          </h2>
+          
+          < div className="bg-dark text-light p-3 mb-5">
+            <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <Typography variant="h2" compent="h2"> Viewing {username ? `${userData.username}'s` : 'your'} Medley     </Typography>
+            <br></br>
+            {Auth.loggedIn() ? <Reaction allowDelete={allowDelete} userData={userData} /> : userData.reactionCount >0 ? <Badge
+                    aria-label={`Reactions: ${userData.reactionCount}`}
+                    badgeContent={userData.reactionCount}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    color="primary"
+                  >
+                    <FavoriteIcon sx={{ color: "red", fontSize: 40 }} />
+                  </Badge> : <Badge
+                    aria-label={`Reactions: ${userData.reactionCount}`}
+                    badgeContent={userData.reactionCount}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    color="primary"
+                  >
+                    <FavoriteBorderIcon sx={{ fontSize: 30 }} />
+                  </Badge> }
+             
+
+             
+             
            
+             </Box>
+            </div>
             <br></br>
             <br></br>
             <br></br>

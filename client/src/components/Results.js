@@ -40,6 +40,7 @@ const Results = (props) => {
     <Box>
 
       {recordData.map((artist) => (
+      !artist.image || !artist.artist || !artist.album_name ? null : 
         <Box sx={{
           backgroundColor: colorGrey,
           opacity: [0.9],
@@ -58,7 +59,7 @@ const Results = (props) => {
           <br></br>
           <Box key={artist.album_name} sx={{ textAlign: 'center' }}>
 
-            <img src={artist.image} alt={artist.album_name} />
+            <img src={artist.image} alt={artist.album_name} /> 
 
             <h1>{artist.album_name}</h1>
             <p>{artist.artist}</p>
