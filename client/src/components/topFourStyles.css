@@ -1,7 +1,7 @@
 .boxFour{
     background: rgba(40, 40, 40, 0.8);
     border-radius: 30px;
-    max-width: 1000px;
+    max-width: 900px;
 }
 
 .record {
@@ -10,7 +10,12 @@
 
 .mediaCard {
     background-color: rgba(246, 246, 246, 0.5);
-    border-radius: 10px;
+    border-radius: 15px;
     margin: 5px;
 }
+
+.image2{
+    border-radius: 15px;
+}
+
 

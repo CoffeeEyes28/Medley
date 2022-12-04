@@ -1,7 +1,8 @@
 .box{
     background: rgba(40, 40, 40, 0.8);
     border-radius: 30px;
-    max-width: 1050px;
+    max-width: 1000px;
+   
     
 }
 
@@ -15,3 +16,8 @@
     border-radius: 15px;
     margin: 5px;
 }
+
+.image {
+    border-radius: 15px;
+}
+

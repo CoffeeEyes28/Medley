@@ -49,15 +49,12 @@ const TopFour = ({ allowDelete, userData }) => {
     const [open, setOpen] = useState(false);
     const [updateMedley, setUpdateMedley] = useState(null);
     const handleOpen = (updateMedley) => {
-        console.log(updateMedley._id)
         setUpdateMedley(updateMedley);
         return setOpen(true);
     }
     const handleClose = () => {
 
-        setTimeout(function(){
-            window.location.reload();
-         }, 50);
+        window.location.reload();
 
         return setOpen(false)
 
@@ -86,7 +83,6 @@ const TopFour = ({ allowDelete, userData }) => {
     // }
 
     const handleUpdateTop = async (input, Id) => {
-       
         const recordToUpdate = Id;
         console.log(recordToUpdate)
         console.log(input)
@@ -123,22 +119,22 @@ const TopFour = ({ allowDelete, userData }) => {
             <h1>Viewing your Medleys!</h1>
           </Container>
         </Jumbotron> */}
-            <Container className='boxFour  p-4 '>
+            <Container className='boxFour border border-light  p-4 '>
                 
                 <h2 className='  text-center text-white pt-4 pb-4'>
                    My Top Four
                 </h2>
-                <ImageList className='record border border-light rounded '  sx={{ p:2 }} cols={4} rowHeight={164}>
+                <ImageList className='record  rounded '  sx={{ p:2 }} cols={4} rowHeight={164}>
 
                     {userData.topFour.map((medley) => {
                         return (
-                            <CardMedia className='mediaCard' sx={{pl:4, pr: 4,  pt: 2 }} key={medley._Id} >
-                                {medley.image ? <CardMedia component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
+                            <CardMedia className='mediaCard' sx={{ }} key={medley._Id} >
+                                {medley.image ? <CardMedia className='image2' component="img" src={medley.image} alt={`The cover for ${medley.artist}`} variant='top' /> : null}
                                 <CardContent>
-                                    <Card.Title>{medley.album_name}</Card.Title>
+                                    <Typography>{medley.album_name}</Typography>
                                     <Typography className='pb-3'>{medley.artist}</Typography>
                                     {/* create a container, make a row */}
-                                    {allowDelete && (<Button type='button' className='btn btn-danger btn-sm' onClick={() => handleOpen(medley)}  >Update this Record</Button>)}
+                                    {allowDelete && (<Button type='button' className='btn btn-danger btn-sm' as="input" value='Update this Record' onClick={() => handleOpen(medley)} />)}
                                 </CardContent>
                             </CardMedia>
 
@@ -166,7 +162,7 @@ const TopFour = ({ allowDelete, userData }) => {
 
                                                     <img src={topFourOption.image} alt="albumchoice"></img>
                                                     <br></br>
-                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => {  handleUpdateTop(topFourOption, updateMedley); handleClose();}}>Update with Selected Artist</Button>
+                                                    <Button type='button' className='btn btn-danger btn-sm' onClick={() => { handleClose(); handleUpdateTop(topFourOption, updateMedley) }}>Update with Selected Artist</Button>
                                                 </ImageListItem>
                                             )
                                         })
