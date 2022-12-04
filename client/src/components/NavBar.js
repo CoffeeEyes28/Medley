@@ -25,7 +25,7 @@ const AppNavbar = () => {
               {/* if user is logged in show saved Medley and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/me'>
+                  <Nav.Link as={Link} to='/me' onClick={() => this.forceUpdate()}>
                     My Medley
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
