@@ -22,6 +22,9 @@ const AppNavbar = () => {
               <Nav.Link as={Link} to='/'>
               Home
               </Nav.Link>
+              <Nav.Link as={Link} to='/about'>
+              About
+              </Nav.Link>
               {/* if user is logged in show saved Medley and logout */}
               {Auth.loggedIn() ? (
                 <>

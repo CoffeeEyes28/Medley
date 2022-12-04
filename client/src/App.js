@@ -17,6 +17,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import About from './pages/About';
 import Container from '@mui/material/Container';
 import NavBar from './components/NavBar';
 
@@ -66,6 +67,10 @@ function App() {
               <Route
                 path="/:username"
                 element={<Profile allowDelete={false}/>}
+              />
+              <Route
+                path="/about"
+                element={<About />}
               />
             </Routes>
           </div>
