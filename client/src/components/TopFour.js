@@ -56,7 +56,7 @@ const TopFour = ({ allowDelete, userData }) => {
 
         setTimeout((function() {
             window.location.reload();
-          }), 50);
+          }), 250);
 
         return setOpen(false)
 
