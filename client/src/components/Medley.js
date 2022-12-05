@@ -1,59 +1,42 @@
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
-
-// import { Card } from 'react-bootstrap';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_USER, GET_ME } from '../utils/queries';
+// import { Navigate, useParams } from 'react-router-dom';
+import { useMutation} from '@apollo/client';
+import { useState, useEffect } from 'react';
+// import { GET_USER, GET_ME } from '../utils/queries';
 import { REMOVE_RECORD } from '../utils/mutations';
 import Auth from '../utils/auth';
 // import AlbumArt from '../components/AlbumArt';
 import { SAVE_TOP } from '../utils/mutations';
-
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
+// import Paper from '@mui/material/Paper';
+// import { styled } from '@mui/material/styles';
 import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-// import Container from '@mui/material/Container';
 import { Container } from 'react-bootstrap';
-
 import CssBaseline from '@mui/material/CssBaseline';
 import { CardContent, CardMedia, Typography } from '@mui/material';
-import { color } from '@mui/system';
-import { red } from '@mui/material/colors';
-import Grid from '@mui/material/Grid';
-import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import Delete from '@mui/icons-material/Delete';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import './medleyStyles.css';
 
 
 
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
-
 const Medley = ({ allowDelete, userData }) => {
 
-
-
+  let [ width, setWidth] = useState(window.innerWidth)
+  const [column, setColumn] = useState(4);
 
   const [removeRecord, { error }] = useMutation(REMOVE_RECORD);
-  const [saveTop, { err }] = useMutation(SAVE_TOP);
+  const [saveTop] = useMutation(SAVE_TOP);
 
 
+  useEffect(() => {
+    setWidth(window.innerWidth)
+    if (width<700){
+        setColumn(2)
+    }
 
+})
 
   // create function that accepts the medley mongo _id value as param and deletes the album from the database
   const handleRemoveRecord = async (_id) => {
@@ -73,6 +56,7 @@ const Medley = ({ allowDelete, userData }) => {
       console.error(error);
     }
   };
+
 
   const handleSaveTop = async (input) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -99,7 +83,6 @@ const Medley = ({ allowDelete, userData }) => {
   }
 
 
-
   if (!userData?.username) {
     return (
       <h4>
@@ -109,9 +92,9 @@ const Medley = ({ allowDelete, userData }) => {
     );
   }
 
+
   return (
     <React.Fragment>
-
       <CssBaseline />
       <Box sx={{
         pb: 15,
@@ -124,9 +107,6 @@ const Medley = ({ allowDelete, userData }) => {
         mt: 5,
       }}>
 
-
-
-
         <Container className=' border border-light box pt-4 pb-4'>
           {/* <Grid className='box' sx={{
             pt: 3,
@@ -137,7 +117,6 @@ const Medley = ({ allowDelete, userData }) => {
           {/* <Box> */}
           <Typography component="h1"
             variant="h4"
-            align="start"
             color="white"
             gutterBottom>
 
@@ -147,7 +126,7 @@ const Medley = ({ allowDelete, userData }) => {
 
           </Typography>
           {/* </Box> */}
-          <ImageList className='medley ' sx={{ pt: 4 }} cols={4} rowHeight={164}>
+          <ImageList className='medley ' sx={{ pt: 4 }} cols={column} rowHeight={164}>
             {userData.medley.map((medley) => {
               return (
                 <CardMedia className='mediaCard1 border border-light' sx={{}} key={medley._Id} border='dark'>

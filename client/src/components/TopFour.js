@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
@@ -44,6 +44,8 @@ const filtered = (medley, topFour) => {
 const TopFour = ({ allowDelete, userData }) => {
     // const { loading, data } = useQuery(GET_ME);
     // const userData = data?.me || [];
+    let [ width, setWidth] = useState(window.innerWidth)
+    const [column, setColumn] = useState(4);
     const [saveTop] = useMutation(SAVE_TOP);
     const [updateTop] = useMutation(UPDATE_TOP);
     const [open, setOpen] = useState(false);
@@ -52,6 +54,16 @@ const TopFour = ({ allowDelete, userData }) => {
         setUpdateMedley(updateMedley);
         return setOpen(true);
     }
+    console.log(width)
+    
+    useEffect(() => {
+        setWidth(window.innerWidth)
+        if (width<700){
+            setColumn(2)
+        }
+
+    })
+
     const handleClose = () => {
 
         window.location.reload();
@@ -124,7 +136,7 @@ const TopFour = ({ allowDelete, userData }) => {
                 <h2 className='  text-center text-white pt-4 pb-4'>
                    My Top Four
                 </h2>
-                <ImageList className='record  rounded '  sx={{ p:2 }} cols={4} rowHeight={164}>
+                <ImageList className='record  rounded '  sx={{ p:2 }} cols={column} rowHeight={164}>
 
                     {userData.topFour.map((medley) => {
                         return (
