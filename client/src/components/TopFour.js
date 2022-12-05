@@ -54,7 +54,9 @@ const TopFour = ({ allowDelete, userData }) => {
     }
     const handleClose = () => {
 
-        window.location.reload();
+        setTimeout((function() {
+            window.location.reload();
+          }), 50);
 
         return setOpen(false)
 
