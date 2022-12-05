@@ -3,9 +3,9 @@
 ## USER STORY:
 
 ```md
-AS A user interested in displaying my musical tastes and viewing those of others
-I WANT an app that can show me people's collections of albums
-SO THAT I can show off my own collection
+AS A user with an eclectic taste in music
+I WANT an app that displays my collection of records in My Medley
+SO THAT I can showcase My Medley and connect with music lovers and serious record collectors all over the world
 ```
 
 ## Table of Contents
@@ -21,7 +21,8 @@ SO THAT I can show off my own collection
   - [Contributors](#contributors)
 
 ## Description
-Medley is an app that allows the user to select and post their their personal collections of musical albums.  Users can also view the Medleys of other uses and vote on them!
+Medley is an interactive online music collection that allows users to showcaste their taste to others in a quick and engaging manner.
+As a Medley user, you can search for an artist, add an artist's album to your Medley, curate a top four of your favorite album, and even react to other users' Medleys.
 
 ## Technologies Used For this Application
 
