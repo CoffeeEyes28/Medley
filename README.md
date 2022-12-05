@@ -3,22 +3,26 @@
 ## USER STORY:
 
 ```md
-AS A user interested in displaying my musical tastes and viewing those of others
-I WANT an app that can show me people's collections of albums
-SO THAT I can show off my own collection
+AS A user with an eclectic taste in music
+I WANT an app that displays my collection of records in My Medley
+SO THAT I can showcase My Medley and connect with music lovers and serious record collectors all over the world
 ```
 
 ## Table of Contents
 - [Medley](#medley)
   - [USER STORY:](#user-story)
   - [Table of Contents](#table-of-contents)
+  - [Description](#description)
   - [Technologies Used For this Application](#technologies-used-for-this-application)
   - [Screenshot of Home Page](#screenshot-of-home-page)
-  - [Screenshot of Sign In and Sign Up Page](#screenshot-of-sign-in-and-sign-up-page)
-  - [Screenshot of Customize Page](#screenshot-of-customize-page)
-  - [Screenshot of Example Medley](#screenshot-of-example-medley)
+  - [Screenshot of Log In and Sign Up Page](#screenshot-of-log-in-and-sign-up-page)
+  - [Screenshot of Profile Page](#screenshot-of-profile-page)
   - [Deployed URL](#deployed-url)
   - [Contributors](#contributors)
+
+## Description
+Medley is an interactive online music collection that allows users to showcaste their taste to others in a quick and engaging manner.
+As a Medley user, you can search for an artist, add an artist's album to your Medley, curate a top four of your favorite album, and even react to other users' Medleys.
 
 ## Technologies Used For this Application
 
@@ -40,26 +44,22 @@ SO THAT I can show off my own collection
 * Multer Storage Cloudinary
 * MSQL12
 * Path
+* Nodemon
 * Sequelize
-* Sweat
-* Blood
-* Tears
-* Love
-* Ketamine
+* Echo
 ```
 
 ## Screenshot of Home Page
 ---
-<img src="https://media.tenor.com/gccZN-BaPMkAAAAd/bigfoot-taco.gif" alt="image machine broke"/>
+<img src="client\src\Assets\Images\medley.herokuapp.com_.png" alt="image machine broke"/>
 
 ```md
 This is our home page for our app Medley.
 ```
 
-## Screenshot of Sign In and Sign Up Page
+## Screenshot of Log In and Sign Up Page
 ---
-<img src="https://media.tenor.com/gccZN-BaPMkAAAAd/bigfoot-taco.gif" alt="image machine broke"/>
-<img src="https://media.tenor.com/gccZN-BaPMkAAAAd/bigfoot-taco.gif" alt="image machine broke"/>
+<img src="client\src\Assets\Images\medley.herokuapp.com_login.png" alt="image machine broke"/>
 
 
 ```md
@@ -67,26 +67,19 @@ Users can sign in or sign up for the app on this page.  By entering email inform
 ```
 
 
-## Screenshot of Customize Page
+## Screenshot of Profile Page
 ---
-<img src="https://media.tenor.com/gccZN-BaPMkAAAAd/bigfoot-taco.gif" alt="image machine broke"/>
+<img src="client\src\Assets\Images\medley.herokuapp.com_me.png" alt="image machine broke"/>
 
 ```md
 Users can generate their own account for displaying their own Medleys, and for viewing other people's Medleys.
 ```
 
-## Screenshot of Example Medley
-
-<img src="https://media.tenor.com/gccZN-BaPMkAAAAd/bigfoot-taco.gif" alt="image machine broke"/>
-
-```md
-Here is an example of a user's Medley, with their chosen albums.
-```
 
 ## Deployed URL
 ---
 
-Click the notes [🎶](http://www.staggeringbeauty.com/)  to see Medley.
+Click the notes [🎶](https://medley.herokuapp.com/)  to see Medley.
 
 
 ## Contributors
