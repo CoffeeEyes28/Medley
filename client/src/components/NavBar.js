@@ -12,7 +12,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar bg='dark' variant='dark' expand='lg' className="fs-4">
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
           </Navbar.Brand>
@@ -29,7 +29,7 @@ const AppNavbar = () => {
               {/* if user is logged in show saved Medley and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/me' onClick={() => this.forceUpdate()}>
+                  <Nav.Link as={Link} to='/me'>
                     My Medley
                   </Nav.Link>
                   <Nav.Link href='https://ko-fi.com/medley96202' target={'_blank'}>
