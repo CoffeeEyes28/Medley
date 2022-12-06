@@ -35,17 +35,17 @@ As a Medley user, you can search for an artist, add an artist's album to your Me
 * BCrypt
 * Bootstrap
 * Connect Session Sequelize
-* Cookie Session
+* JWT
 * Dotenv
 * Express
 * Express Handlebars
 * Express Session
 * Multer
 * Multer Storage Cloudinary
-* MSQL12
+* Mongoose
+* MongoDB
 * Path
 * Nodemon
-* Sequelize
 * Echo
 ```
 
