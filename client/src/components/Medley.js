@@ -1,14 +1,9 @@
 import React from 'react';
-// import { Navigate, useParams } from 'react-router-dom';
 import { useMutation} from '@apollo/client';
 import { useState, useEffect } from 'react';
-// import { GET_USER, GET_ME } from '../utils/queries';
 import { REMOVE_RECORD } from '../utils/mutations';
 import Auth from '../utils/auth';
-// import AlbumArt from '../components/AlbumArt';
 import { SAVE_TOP } from '../utils/mutations';
-// import Paper from '@mui/material/Paper';
-// import { styled } from '@mui/material/styles';
 import ImageList from '@mui/material/ImageList';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -31,12 +26,24 @@ const Medley = ({ allowDelete, userData }) => {
 
 
   useEffect(() => {
-    setWidth(window.innerWidth)
-    if (width<700){
-        setColumn(2)
-    }
+    window.addEventListener('resize', handleResize)
+  },[])
 
-})
+  // function wiil resize columns when window is changed
+const handleResize = () => {
+  console.log("running resize function for medley");
+  const winWidth = window.innerWidth
+  setWidth(winWidth)
+  if (winWidth<700){
+      setColumn(2)
+  }
+  else if(winWidth>700){
+      setColumn(4)
+  }
+}
+
+
+
 
   // create function that accepts the medley mongo _id value as param and deletes the album from the database
   const handleRemoveRecord = async (_id) => {
@@ -108,13 +115,6 @@ const Medley = ({ allowDelete, userData }) => {
       }}>
 
         <Container className=' border border-light box pt-4 pb-4'>
-          {/* <Grid className='box' sx={{
-            pt: 3,
-            pl: 3,
-            pr: 3,
-            pb: 3,
-          }} container spacing={4}> */}
-          {/* <Box> */}
           <Typography component="h1"
             variant="h4"
             color="white"
@@ -140,8 +140,8 @@ const Medley = ({ allowDelete, userData }) => {
                       {allowDelete && !userData.topFour.some((record => record.album_name === medley.album_name)) && (<IconButton className='del-btn' title="Delete Record" aria-label="delete" variant="contained" sx={{ color: 'red' }} onClick={() => handleRemoveRecord(medley._id)}>
                         <RemoveCircleIcon />
                       </IconButton>)}</Typography>
-                    {allowDelete && userData.topFour.length < 5 && (<Button variant="contained" size="small" hidden={userData.topFour.length >= 4 || userData.topFour.some((record => record.album_name === medley.album_name))} onClick={() => handleSaveTop(medley)}>
-                      Save to topFour!
+                    {allowDelete && userData.topFour.length < 5 && (<Button className='text-dark border-white' sx={{ bgcolor: 'lightgrey' }}  variant="outlined" size="small" hidden={userData.topFour.length >= 4 || userData.topFour.some((record => record.album_name === medley.album_name))} onClick={() => handleSaveTop(medley)}>
+                      Save to Top Four!
                     </Button>)}
 
                   </CardContent>
@@ -169,8 +169,6 @@ const Medley = ({ allowDelete, userData }) => {
 
             </div>
           )} */}
-
-
         </Container >
       </Box>
     </React.Fragment >
