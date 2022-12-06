@@ -33,20 +33,20 @@ As a Medley user, you can search for an artist, add an artist's album to your Me
 * JavaScript
 * JSON
 * BCrypt
-* Bootstrap
-* Connect Session Sequelize
+* apollo-server-express
 * JWT
+* graphql
 * Dotenv
 * Express
 * Express Handlebars
 * Express Session
-* Multer
-* Multer Storage Cloudinary
 * Mongoose
 * MongoDB
 * Path
 * Nodemon
-* Echo
+* REACT
+* Material UI
+* Bootstrap
 ```
 
 ## Screenshot of Home Page
