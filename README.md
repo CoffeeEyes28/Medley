@@ -38,8 +38,6 @@ As a Medley user, you can search for an artist, add an artist's album to your Me
 * graphql
 * Dotenv
 * Express
-* Express Handlebars
-* Express Session
 * Mongoose
 * MongoDB
 * Path
