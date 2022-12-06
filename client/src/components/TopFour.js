@@ -54,7 +54,7 @@ const TopFour = ({ allowDelete, userData }) => {
         setUpdateMedley(updateMedley);
         return setOpen(true);
     }
-    console.log(width)
+
 
 
 
@@ -64,7 +64,6 @@ const TopFour = ({ allowDelete, userData }) => {
 
     // function wiil resize columns when window is changed
     const handleResize = () => {
-        console.log("running resize function");
         const winWidth = window.innerWidth
         setWidth(winWidth)
         if (winWidth < 800) {
@@ -85,32 +84,11 @@ const TopFour = ({ allowDelete, userData }) => {
 
     };
 
-    // const handleSaveTop = async (input) => {
-    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    //     if (!token) {
-    //         return false;
-    //     }
-    //     console.log(input)
-    //     const frank = {
-    //         artist: input.artist, album_name: input.album_name,
-    //         image: input.image
-    //     }
-    //     try {
-    //         let data = await saveTop({
-    //             variables: { input: frank },
-    //         });
-    //         console.log(data)
-
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
 
     const handleUpdateTop = async (input, Id) => {
         const recordToUpdate = Id;
-        console.log(recordToUpdate)
-        console.log(input)
+        
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         const frank = {
