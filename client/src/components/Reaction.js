@@ -47,7 +47,7 @@ const Reaction = ({ allowDelete, userData }) => {
     if (!token) {
       return false;
     }
-    console.log(userId, " ", username);
+  
 
     try {
       await addReaction({
@@ -63,7 +63,7 @@ const Reaction = ({ allowDelete, userData }) => {
   };
 
   const remove = async (reactionId, userId) => {
-    console.log(reactionId, " ", userId);
+  
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {

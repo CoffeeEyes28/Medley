@@ -31,7 +31,6 @@ const Medley = ({ allowDelete, userData }) => {
 
   // function wiil resize columns when window is changed
 const handleResize = () => {
-  console.log("running resize function for medley");
   const winWidth = window.innerWidth
   setWidth(winWidth)
   if (winWidth<700){
@@ -52,13 +51,12 @@ const handleResize = () => {
     if (!token) {
       return false;
     }
-    console.log(_id)
+  
     try {
       let data = await removeRecord({
         variables: { _id: _id },
       });
-      console.log(data)
-
+   
     } catch (err) {
       console.error(error);
     }
@@ -71,7 +69,7 @@ const handleResize = () => {
     if (!token) {
       return false;
     }
-    console.log(input)
+   
     const frank = {
       artist: input.artist, album_name: input.album_name,
       image: input.image
@@ -80,7 +78,7 @@ const handleResize = () => {
       let data = await saveTop({
         variables: { input: frank },
       });
-      console.log(data)
+  
 
     } catch (err) {
       console.error(error);
