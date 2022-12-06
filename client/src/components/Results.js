@@ -20,7 +20,7 @@ const Results = (props) => {
 
   const addToMedley = async (album_name) => {
     const recordToSave = recordData.find((record) => record.album_name === album_name);
-    console.log(recordToSave)
+
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {

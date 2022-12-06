@@ -27,7 +27,6 @@ const Searchbar = () => {
       }
 
       const data = await response.json();
-      console.log(searchInput, ' ', data)
       const artistData = data.topalbums.album.map((artist) => ({
         artist: artist.artist.name,
         album_name: artist.name,
