@@ -33,7 +33,7 @@ As a Medley user, you can search for an artist, add an artist's album to your Me
 * JavaScript
 * JSON
 * BCrypt
-* apollo-server-express
+* Apollo-Server-Express
 * JWT
 * graphql
 * Dotenv
