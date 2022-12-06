@@ -13,7 +13,7 @@ const Footer = () => {
 
   return (
 
-    <footer className=" container-fluid small bg-light absolute-bottom ">
+    <footer className=" container-fluid small bg-dark absolute-bottom ">
       <div className="  ">
         <div className="row justify-content-md-center py-2">
           <div className="col-md-auto">
@@ -29,11 +29,11 @@ const Footer = () => {
         <div className="row justify-content-md-center py-2">
           <div className="col-md-auto">
             <ul className="list-inline">
-              <li className="list-inline-item">&copy; 2022 Created By <CopyrightIcon />ampNerd, Inc.</li>
-              <li className="list-inline-item">All rights reserved.</li>
+              <li className=" text-white list-inline-item">&copy; 2022 Created By <CopyrightIcon />ampNerd, Inc.</li>
+              <li className="  text-white list-inline-item">All rights reserved.</li>
               <br></br>
               <div className="row justify-content-md-center py-2">
-              <div className="col-md-auto">
+              <div className="  text-white col-md-auto">
               <li>Powered By LastFM</li>
               </div>
               </div>
