@@ -21,7 +21,7 @@ SO THAT I can showcase My Medley and connect with music lovers and serious recor
   - [Contributors](#contributors)
 
 ## Description
-Medley is an interactive online music collection that allows users to showcaste their taste to others in a quick and engaging manner.
+Medley is an interactive online music collection that allows users to showcase their taste to others in a quick and engaging manner.
 As a Medley user, you can search for an artist, add an artist's album to your Medley, curate a top four of your favorite album, and even react to other users' Medleys.
 
 ## Technologies Used For this Application
